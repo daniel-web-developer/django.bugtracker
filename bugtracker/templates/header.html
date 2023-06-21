@@ -7,10 +7,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}"/>
 <body>
-    <header>
-        <h1>
-            VIVA CRISTO REY
-        </h1>
+    <header class='flex flex-justcont-sb'>
+        <h5 class='logo'>Logo</h5>
+        <div>
+            <a>Home</a>
+            <button>Log in</button>
+        </div>
     </header>
     {% block body %}
     {% endblock %}
