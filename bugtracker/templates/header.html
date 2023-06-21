@@ -7,11 +7,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}"/>
 <body>
-    <header class='flex flex-justcont-sb'>
-        <h5 class='logo'>Logo</h5>
+    <!-- Add if to check if user is logged in -->
+    <header class="flex flex-justcont-sb">
+        <h5 class="logo">Logo</h5>
         <div>
-            <a>Home</a>
-            <button>Log in</button>
+            <a href="/">Home</a>
+            <a>Log in</a> <!-- This will work for the Auth0 app -->
         </div>
     </header>
     {% block body %}
