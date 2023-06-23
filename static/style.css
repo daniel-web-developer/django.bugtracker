@@ -24,6 +24,10 @@ h5 {
   font-size: 24px;
 }
 
+p {
+  font-size: 16px;
+}
+
 @media screen and (max-width: 639px) {
   h1 {
     font-size: 56px;
@@ -79,6 +83,7 @@ body {
   --primary: #105384;
   --secondary: #3186C4;
   --accent: #5833EE;
+  --danger: #ff0000;
   --bg: #F0F0F0;
   --grey: #A4A4A4;
 }
@@ -89,12 +94,15 @@ header {
 }
 header .logo {
   font-size: 28px;
-  color: var(--primary);
 }
-header a {
-  border: none;
-  background-color: var(--primary);
-  color: var(--bg);
+header .logo a {
+  color: var(--primary) !important;
+  text-decoration: none;
+}
+header .header-btns {
+  border: 1px solid var(--primary);
+  background-color: transparent;
+  color: var(--primary);
   margin-left: 16px;
   padding: 5px 10px 5px 10px;
   border-radius: 20px;
@@ -103,8 +111,9 @@ header a {
   cursor: pointer;
   transition: all 100ms ease-in-out;
 }
-header a:hover {
-  background-color: var(--secondary);
+header .header-btns:hover {
+  background-color: var(--primary);
+  color: var(--bg);
 }
 
 @media screen and (max-width: 639px) {
@@ -129,18 +138,22 @@ header a:hover {
 }
 .content h5 {
   padding-top: 32px;
-  font-weight: 700;
+  font-weight: 400;
 }
-.content h5 a {
+.content h5 .home-button {
   cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: all 150ms ease-in-out;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  color: var(--bg);
+  margin-left: 16px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 30px;
+  transition: all 100ms ease-in-out;
 }
-.content h5 a:hover {
-  -webkit-text-decoration: underline 0px var(--bg);
-          text-decoration: underline 0px var(--bg);
-  text-underline-offset: 5px;
+.content h5 .home-button:hover {
+  border: 1px solid var(--primary);
+  background-color: var(--bg);
+  color: var(--primary);
 }
 
 @media screen and (max-width: 639px) {
@@ -172,4 +185,63 @@ header a:hover {
   .mobile {
     flex-direction: column;
   }
+}
+.login {
+  min-height: 100vh;
+  background-color: var(--primary);
+  color: var(--bg);
+}
+.login h4 {
+  padding-bottom: 16px;
+}
+.login-block {
+  width: 328px;
+  height: 400px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid var(--bg);
+  text-align: center;
+}
+.login form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.login form tr {
+  display: block;
+  padding-bottom: 40px;
+}
+.login form tr:last-child {
+  padding-bottom: 40px;
+}
+.login tbody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-btn {
+  cursor: pointer;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  color: var(--bg);
+  padding: 10px 15px 10px 15px;
+  border-radius: 20px;
+  font-size: 16px;
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: all 100ms ease-in-out;
+}
+.login-btn:hover {
+  border: 1px solid var(--primary);
+  background-color: var(--bg);
+  color: var(--primary);
+}
+.login-error {
+  color: var(--danger);
+}
+
+.message {
+  width: 328px;
+  padding-top: 16px;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */

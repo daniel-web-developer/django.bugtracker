@@ -6,13 +6,17 @@ header{
 
     .logo{
         font-size: 28px;
-        color: var(--primary);
+        
+        a{
+            color: var(--primary) !important;
+            text-decoration: none;
+        }
     }
 
-    a{
-        border: none;
-        background-color: var(--primary);
-        color: var(--bg);
+    .header-btns{
+        border: 1px solid var(--primary);
+        background-color: transparent;
+        color: var(--primary);
         margin-left: 16px;
         padding: 5px 10px 5px 10px;
         border-radius: 20px;
@@ -24,7 +28,8 @@ header{
         transition: all 100ms ease-in-out;
 
         &:hover{
-            background-color: var(--secondary);
+            background-color: var(--primary);
+            color: var(--bg);
         }
     }
 }

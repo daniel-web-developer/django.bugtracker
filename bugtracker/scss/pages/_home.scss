@@ -11,17 +11,22 @@
 
     h5{
         padding-top: 32px;
-        font-weight: 700;
+        font-weight: 400;
         
-        a{
+        .home-button{
             cursor: pointer;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            transition: all 150ms ease-in-out;
-
+            border: 1px solid var(--bg);
+            background-color: transparent;
+            color: var(--bg);
+            margin-left: 16px;
+            padding: 5px 15px 5px 15px;
+            border-radius: 30px;
+            transition: all 100ms ease-in-out;
+            
             &:hover{
-                text-decoration: underline 0px var(--bg);
-                text-underline-offset: 5px;
+                border: 1px solid var(--primary);
+                background-color: var(--bg);
+                color: var(--primary);
             }
         }
     }

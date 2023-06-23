@@ -1,0 +1,46 @@
+{% extends "header.html" %}
+
+{% block body %}
+  <!-- {% if form.errors %}
+    <p>Wrong username and/or password. Please try again.</p>
+  {% endif %} -->
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+
+  <div class="flex flex-justcont-c flex-alignit-c login flex-dir-col">
+    <div class="flex flex-alignit-c flex-dir-col flex-justcont-c login-block">
+      <h4>LOG IN</h4>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table class="flex">
+          <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+          </tr>
+        </table>
+        <input type="submit" value="Log in" class="login-btn">
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+    
+      {# Assumes you setup the password_reset view in your URLconf #}
+      <p><a href="{% url 'password_reset' %}" class="login-btn">Lost password?</a></p>
+      {% if form.errors %}
+        <p class="login-error">Wrong username and/or password. Please try again.</p>
+      {% endif %}
+    </div>
+    <p class="message">
+      ATTENTION: No one but I can create new users, that's why there's no such option.
+    </p>
+  </div>
+{% endblock %}
