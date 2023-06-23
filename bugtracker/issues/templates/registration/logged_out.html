@@ -1,0 +1,12 @@
+{% extends "header.html" %}
+
+{% block body %}
+<div class="flex logout flex-justcont-c flex-alignit-c flex-dir-col">
+    <h4>
+        You've successfully signed out!
+    </h4>
+    <h5>
+        Click <a href="{% url 'index' %}">here</a> to go to the main page or <a href="{% url 'login' %}">here</a> to log in.
+    </h5>
+</div>
+{% endblock %}
