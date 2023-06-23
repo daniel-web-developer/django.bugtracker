@@ -258,4 +258,54 @@ header .header-btns:hover {
 }
 .logout a:hover {
   text-underline-offset: 5px;
+}
+
+.reset {
+  min-height: 100vh;
+  background-color: var(--primary);
+  color: var(--bg);
+}
+.reset a {
+  color: var(--bg);
+  text-underline-offset: 1px;
+  transition: all 150ms ease-in-out;
+}
+.reset a:hover {
+  text-underline-offset: 5px;
+}
+.reset-block {
+  width: 328px;
+  height: 400px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid var(--bg);
+  text-align: center;
+}
+.reset-email-text {
+  padding-right: 8px;
+}
+.reset-btn {
+  cursor: pointer;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  color: var(--bg);
+  padding: 10px 15px 10px 15px;
+  border-radius: 20px;
+  font-size: 16px;
+  text-decoration: none;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  transition: all 100ms ease-in-out;
+}
+.reset-btn:hover {
+  border: 1px solid var(--primary);
+  background-color: var(--bg);
+  color: var(--primary);
+}
+.reset-title {
+  padding-bottom: 16px;
+}
+.reset tbody {
+  display: flex;
+  flex-direction: column;
 }/*# sourceMappingURL=style.css.map */
