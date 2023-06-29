@@ -14,6 +14,7 @@ class Project(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     public = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=255, unique=True)
 
 class Ticket(models.Model):
     title = models.CharField(max_length=255)
@@ -21,4 +22,5 @@ class Ticket(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     edited_on = models.DateTimeField(null=True, auto_now=True)
-    project = models.OneToOneField(Project, blank=False, related_name="tickets")
+    project = models.OneToOneField(Project, blank=False, related_name="tickets", on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=255, unique=True)
