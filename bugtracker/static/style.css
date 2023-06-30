@@ -308,4 +308,27 @@ header .header-btns:hover {
 .reset tbody {
   display: flex;
   flex-direction: column;
+}
+
+.tracker {
+  background-color: var(--primary);
+  height: 100vh;
+  padding-top: 24px;
+  justify-content: center;
+}
+.tracker-block {
+  width: 1200px;
+  height: 716px;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  border-radius: 20px;
+}
+.tracker-block-first {
+  margin-top: 24px;
+  margin-left: 24px;
+  height: 668px;
+  width: 294px;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  border-radius: 20px;
 }/*# sourceMappingURL=style.css.map */
