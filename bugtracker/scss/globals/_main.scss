@@ -42,3 +42,10 @@ body{
         flex-direction: column-reverse;
     }
 }
+
+.main{
+    &-content{
+        background-color: var(--primary);
+        height: 100vh;
+    }
+}

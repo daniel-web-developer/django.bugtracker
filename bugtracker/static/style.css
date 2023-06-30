@@ -79,6 +79,11 @@ body {
   flex-direction: column-reverse;
 }
 
+.main-content {
+  background-color: var(--primary);
+  height: 100vh;
+}
+
 :root {
   --primary: #105384;
   --secondary: #3186C4;
@@ -331,4 +336,9 @@ header .header-btns:hover {
   border: 1px solid var(--bg);
   background-color: transparent;
   border-radius: 20px;
+}
+
+.profile {
+  padding: 24px 240px 24px 240px;
+  color: var(--bg);
 }/*# sourceMappingURL=style.css.map */
