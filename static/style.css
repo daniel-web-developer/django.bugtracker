@@ -145,10 +145,10 @@ header .header-btns:hover {
   border: 1px solid var(--bg);
   background-color: transparent;
   color: var(--bg);
-  margin-left: 16px;
   padding: 5px 15px 5px 15px;
   border-radius: 30px;
   transition: all 100ms ease-in-out;
+  text-decoration: none;
 }
 .content h5 .home-button:hover {
   border: 1px solid var(--primary);

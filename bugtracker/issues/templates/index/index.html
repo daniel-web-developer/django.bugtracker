@@ -6,7 +6,11 @@
         <h1>BugTracker</h1>
         <h3>An easier way to keep track of your projects</h3>
         <h5 class="flex flex-justcont-c">
-            <a class="home-button">Get started</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'new' %}" class="home-button">Get started</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="home-button">Get started</a>
+            {% endif %}
         </h5>
     </div>
 </div>
