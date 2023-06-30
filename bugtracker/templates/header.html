@@ -13,6 +13,7 @@
             <a href="{% url 'index' %}" class="header-btns">Home</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}" class="header-btns">Log out</a>
+                <a href="{% url 'profile-index' user.id %}" class="header-btns">Your profile</a>
             {% else %}
                 <a href="{% url 'login' %}" class="header-btns">Log in</a>
             {% endif %}
