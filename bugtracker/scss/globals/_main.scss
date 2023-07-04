@@ -41,6 +41,10 @@ body{
     &-dir-col-rev{
         flex-direction: column-reverse;
     }
+
+    &-dir-row-rev{
+        flex-direction: row-reverse;
+    }
 }
 
 .main{

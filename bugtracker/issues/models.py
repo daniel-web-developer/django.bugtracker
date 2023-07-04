@@ -23,4 +23,5 @@ class Ticket(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     edited_on = models.DateTimeField(null=True, auto_now=True)
     project = models.OneToOneField(Project, blank=False, related_name="tickets", on_delete=models.CASCADE)
+    public = models.BooleanField(default=False)
     slug = models.SlugField(max_length=255, unique=True)

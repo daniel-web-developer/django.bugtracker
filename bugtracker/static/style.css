@@ -78,6 +78,9 @@ body {
 .flex-dir-col-rev {
   flex-direction: column-reverse;
 }
+.flex-dir-row-rev {
+  flex-direction: row-reverse;
+}
 
 .main-content {
   background-color: var(--primary);
@@ -321,6 +324,13 @@ header .header-btns:hover {
   padding-top: 24px;
   justify-content: center;
 }
+.tracker-before {
+  padding-bottom: 8px;
+  color: var(--bg);
+}
+.tracker-before-nick {
+  color: var(--bg);
+}
 .tracker-block {
   width: 1200px;
   height: 716px;
@@ -336,6 +346,66 @@ header .header-btns:hover {
   border: 1px solid var(--bg);
   background-color: transparent;
   border-radius: 20px;
+}
+.tracker-block-first-text {
+  color: var(--bg);
+}
+.tracker-block-first-text-title {
+  padding-top: 8px;
+  padding-left: 16px;
+}
+.tracker-block-first-text-create {
+  cursor: pointer;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  color: var(--bg);
+  padding: 5px 10px 5px 10px;
+  border-radius: 30px;
+  transition: all 100ms ease-in-out;
+  text-decoration: none;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.tracker-block-first-text-create:hover {
+  border: 1px solid var(--primary);
+  background-color: var(--bg);
+  color: var(--primary);
+}
+.tracker-block-second {
+  margin-top: 24px;
+  margin-left: 24px;
+}
+.tracker-block-second-search {
+  height: 40px;
+  width: 834px;
+  margin-bottom: 16px;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  border-radius: 20px;
+}
+.tracker-block-second-tickets {
+  height: 564px;
+  width: 834px;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.tracker-block-second-issue {
+  cursor: pointer;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  color: var(--bg);
+  height: 32px;
+  width: 112px;
+  border-radius: 100px;
+  transition: all 100ms ease-in-out;
+  text-decoration: none;
+}
+.tracker-block-second-issue:hover {
+  border: 1px solid var(--primary);
+  background-color: var(--bg);
+  color: var(--primary);
 }
 
 .profile {

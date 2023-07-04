@@ -7,7 +7,7 @@
         <h3>An easier way to keep track of your projects</h3>
         <h5 class="flex flex-justcont-c">
             {% if user.is_authenticated %}
-                <a href="{% url 'tracker' %}" class="home-button">Get started</a>
+                <a href="{% url 'tracker' user.id %}" class="home-button">Get started</a>
             {% else %}
                 <a href="{% url 'login' %}" class="home-button">Get started</a>
             {% endif %}
