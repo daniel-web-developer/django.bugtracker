@@ -32,7 +32,79 @@ header{
             color: var(--bg);
         }
     }
+
+    .menu{
+        cursor: pointer;
+
+        span{
+            display: block;
+            width: 24px;
+            height: 2px;
+
+            background-color: var(--primary);
+
+            margin-bottom: 4px;
+
+            transition: all 150ms ease-in-out;
+
+            &:last-child{
+                margin-bottom: 0px;
+            }
+        }
+
+        &.open{
+            span{
+                transform: rotate(1turn) scale(0);
+
+                &:first-child{
+                    transform: rotate(0.125turn);
+                    translate: 0px 6px;
+                }
+                &:last-child{
+                    transform: rotate(-0.125turn);
+                    translate: 0px -6px;
+                }
+            }
+        }
+    }
 }
+
+.overlay{
+    position: absolute;
+    display: block;
+    visibility: hidden;
+    background-color: var(--bg);
+    width: 100%;
+    transform: scale(0%), translate(-100%, -100%);
+    transition: all 150ms ease-in-out;
+
+    &-main{
+        width: 100%;
+    }
+
+    a{
+        display: block;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        text-decoration: none;
+        color: var(--primary);
+        font-size: 20px;
+        text-align: center;
+
+        &:first-child{
+            margin-top: 16px;
+        }
+
+        &:last-child{
+            margin-bottom: 16px;
+        }
+    }
+
+    &-active{
+        visibility: visible;
+        transform: scale(100%), translate(100%, 100%);
+    }
+}    
 
 @media screen and (max-width: 639px){
     header{

@@ -8,10 +8,10 @@
         </div>
         <div class="flex tracker-block">
             <div class="tracker-block-first">
-                <div class="tracker-block-first-text">
+                <div class="flex flex-justcont-sb flex-alignit-c tracker-block-first-text">
                     <h5 class="tracker-block-first-text-title">Projects</h5>
-                    <div class="flex flex-justcont-c">
-                        <div class="tracker-block-first-text-create">New project</div>
+                    <div class="flex flex-justcont-c flex-alignit-c">
+                        <a href="{% url 'new-project' user.id %}" class="tracker-block-first-text-create">New project</a>
                     </div>
                 </div>
             </div>

@@ -87,6 +87,16 @@ body {
   height: 100vh;
 }
 
+@media screen and (max-width: 639px) {
+  .display-none-mobile {
+    display: none;
+  }
+}
+@media screen and (min-width: 640px) {
+  .display-none-desktop {
+    display: none;
+  }
+}
 :root {
   --primary: #105384;
   --secondary: #3186C4;
@@ -122,6 +132,63 @@ header .header-btns {
 header .header-btns:hover {
   background-color: var(--primary);
   color: var(--bg);
+}
+header .menu {
+  cursor: pointer;
+}
+header .menu span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--primary);
+  margin-bottom: 4px;
+  transition: all 150ms ease-in-out;
+}
+header .menu span:last-child {
+  margin-bottom: 0px;
+}
+header .menu.open span {
+  transform: rotate(1turn) scale(0);
+}
+header .menu.open span:first-child {
+  transform: rotate(0.125turn);
+  translate: 0px 6px;
+}
+header .menu.open span:last-child {
+  transform: rotate(-0.125turn);
+  translate: 0px -6px;
+}
+
+.overlay {
+  position: absolute;
+  display: block;
+  visibility: hidden;
+  background-color: var(--bg);
+  width: 100%;
+  transform: scale(0%), translate(-100%, -100%);
+  transition: all 150ms ease-in-out;
+}
+.overlay-main {
+  width: 100%;
+}
+.overlay a {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: var(--primary);
+  font-size: 20px;
+  text-align: center;
+}
+.overlay a:first-child {
+  margin-top: 16px;
+}
+.overlay a:last-child {
+  margin-bottom: 16px;
+}
+.overlay-active {
+  visibility: visible;
+  transform: scale(100%), translate(100%, 100%);
 }
 
 @media screen and (max-width: 639px) {
@@ -246,6 +313,8 @@ header .header-btns:hover {
 }
 .login-error {
   color: var(--danger);
+  background-color: var(--primary);
+  margin-top: -48px !important;
 }
 
 .message {
@@ -359,7 +428,9 @@ header .header-btns:hover {
   border: 1px solid var(--bg);
   background-color: transparent;
   color: var(--bg);
-  padding: 5px 10px 5px 10px;
+  padding: 0 10px 0 10px;
+  margin-top: 8px;
+  margin-right: 16px;
   border-radius: 30px;
   transition: all 100ms ease-in-out;
   text-decoration: none;

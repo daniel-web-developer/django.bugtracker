@@ -9,7 +9,7 @@
 <body>
     <header class="flex flex-justcont-sb">
         <h5 class="logo"><a href="{% url 'index' %}">Logo</a></h5>
-        <div>
+        <div class="display-none-mobile">
             <a href="{% url 'index' %}" class="header-btns">Home</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}" class="header-btns">Log out</a>
@@ -18,8 +18,26 @@
                 <a href="{% url 'login' %}" class="header-btns">Log in</a>
             {% endif %}
         </div>
+        <div id="menu" class="display-none-desktop menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
+
+    <div id="overlay" class="display-none-desktop overlay">
+        <div class="flex flex-dir-col overlay-main">
+            <a href="{% url 'index' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Log out</a>
+                <a href="{% url 'profile-index' user.id %}">Your profile</a>
+            {% else %}
+                <a href="{% url 'login' %}">Log in</a>
+            {% endif %}
+        </div>
+    </div>
     {% block body %}
     {% endblock %}
+    <script src="{% static 'script.js' %}" defer></script>
 </body>
 </html>
