@@ -69,42 +69,48 @@ header{
     }
 }
 
-.overlay{
-    position: absolute;
-    display: block;
-    visibility: hidden;
-    background-color: var(--bg);
-    width: 100%;
-    transform: scale(0%), translate(-100%, -100%);
-    transition: all 150ms ease-in-out;
-
-    &-main{
-        width: 100%;
-    }
-
-    a{
+@media screen and (max-width: 1024px){
+    .overlay{
+        position: absolute;
         display: block;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        text-decoration: none;
-        color: var(--primary);
-        font-size: 20px;
-        text-align: center;
-
-        &:first-child{
-            margin-top: 16px;
+        visibility: hidden;
+        background-color: var(--bg);
+        width: 100%;
+        transform: scale(0%), translate(-100%, -100%);
+        transition: all 150ms ease-in-out;
+    
+        &-main{
+            width: 100%;
         }
-
-        &:last-child{
-            margin-bottom: 16px;
+    
+        a{
+            display: block;
+            margin-top: 8px;
+            padding-top: 8px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 16px;
+            text-align: center;
+    
+            &:first-child{
+                margin-top: 16px;
+                padding-top: 16px;
+            }
+    
+            &:last-child{
+                margin-bottom: 16px;
+                padding-bottom: 16px;
+            }
+        }
+    
+        &-active{
+            visibility: visible;
+            transform: scale(100%), translate(100%, 100%);
         }
     }
-
-    &-active{
-        visibility: visible;
-        transform: scale(100%), translate(100%, 100%);
-    }
-}    
+}
 
 @media screen and (max-width: 639px){
     header{

@@ -2,3 +2,9 @@
     padding: 24px 240px 24px 240px;
     color: var(--bg);
 }
+
+@media screen and (max-width: 639px) {
+    .profile{
+        padding: 8px 32px 8px 32px;
+    }    
+}

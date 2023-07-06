@@ -87,12 +87,12 @@ body {
   height: 100vh;
 }
 
-@media screen and (max-width: 639px) {
+@media screen and (max-width: 1023px) {
   .display-none-mobile {
     display: none;
   }
 }
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 1024px) {
   .display-none-desktop {
     display: none;
   }
@@ -159,38 +159,43 @@ header .menu.open span:last-child {
   translate: 0px -6px;
 }
 
-.overlay {
-  position: absolute;
-  display: block;
-  visibility: hidden;
-  background-color: var(--bg);
-  width: 100%;
-  transform: scale(0%), translate(-100%, -100%);
-  transition: all 150ms ease-in-out;
+@media screen and (max-width: 1024px) {
+  .overlay {
+    position: absolute;
+    display: block;
+    visibility: hidden;
+    background-color: var(--bg);
+    width: 100%;
+    transform: scale(0%), translate(-100%, -100%);
+    transition: all 150ms ease-in-out;
+  }
+  .overlay-main {
+    width: 100%;
+  }
+  .overlay a {
+    display: block;
+    margin-top: 8px;
+    padding-top: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    text-decoration: none;
+    color: var(--primary);
+    font-size: 16px;
+    text-align: center;
+  }
+  .overlay a:first-child {
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+  .overlay a:last-child {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
+  .overlay-active {
+    visibility: visible;
+    transform: scale(100%), translate(100%, 100%);
+  }
 }
-.overlay-main {
-  width: 100%;
-}
-.overlay a {
-  display: block;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  text-decoration: none;
-  color: var(--primary);
-  font-size: 20px;
-  text-align: center;
-}
-.overlay a:first-child {
-  margin-top: 16px;
-}
-.overlay a:last-child {
-  margin-bottom: 16px;
-}
-.overlay-active {
-  visibility: visible;
-  transform: scale(100%), translate(100%, 100%);
-}
-
 @media screen and (max-width: 639px) {
   header {
     margin: 16px 32px 16px 23px;
@@ -479,7 +484,106 @@ header .menu.open span:last-child {
   color: var(--primary);
 }
 
+@media screen and (max-width: 809px) {
+  .tracker {
+    padding-top: 8px;
+  }
+  .tracker-before {
+    padding-top: 0px;
+  }
+  .tracker-block {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 95vw;
+    align-items: center;
+    flex-direction: column;
+  }
+  .tracker-block-first {
+    width: 95%;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 4px;
+    margin-top: 8px;
+    margin-left: 0;
+  }
+  .tracker-block-first-text-title {
+    padding: 0;
+    padding-left: 8px;
+  }
+  .tracker-block-first-text-create {
+    margin: 0;
+    margin-right: 8px;
+  }
+  .tracker-block-second {
+    width: 95%;
+    margin: 0;
+    margin-top: 8px;
+  }
+  .tracker-block-second-search {
+    width: 100%;
+  }
+  .tracker-block-second-tickets {
+    height: 520px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .tracker-block-second-issue {
+    margin-bottom: 8px;
+  }
+}
+@media screen and (min-width: 810px) and (max-width: 1279px) {
+  .tracker {
+    padding-top: 8px;
+  }
+  .tracker-before {
+    padding-top: 0px;
+  }
+  .tracker-block {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 95vw;
+    flex-direction: row;
+  }
+  .tracker-block-first {
+    width: 50%;
+    padding: 4px;
+    margin-top: 16px;
+    margin-left: 16px;
+    margin-right: 8px;
+    margin-bottom: 16px;
+  }
+  .tracker-block-first-text-title {
+    padding: 0;
+    padding-left: 8px;
+  }
+  .tracker-block-first-text-create {
+    margin: 0;
+    margin-right: 8px;
+  }
+  .tracker-block-second {
+    width: 95%;
+    margin: 0;
+    margin-top: 16px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  .tracker-block-second-search {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .tracker-block-second-tickets {
+    height: 580px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
 .profile {
   padding: 24px 240px 24px 240px;
   color: var(--bg);
+}
+
+@media screen and (max-width: 639px) {
+  .profile {
+    padding: 8px 32px 8px 32px;
+  }
 }/*# sourceMappingURL=style.css.map */
