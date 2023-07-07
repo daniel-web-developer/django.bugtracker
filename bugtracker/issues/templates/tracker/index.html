@@ -10,9 +10,11 @@
             <div class="tracker-block-first">
                 <div class="flex flex-justcont-sb flex-alignit-c tracker-block-first-text">
                     <h5 class="tracker-block-first-text-title">Projects</h5>
+                    {% if user.id == profile.id %}
                     <div class="flex flex-justcont-c flex-alignit-c">
                         <a href="{% url 'new-project' user.id %}" class="tracker-block-first-text-create">New project</a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="flex flex-dir-col tracker-block-second">
@@ -20,9 +22,11 @@
                 </div>
                 <div class="tracker-block-second-tickets">
                 </div>
+                {% if user.id == profile.id %}
                 <div class="flex flex-dir-row-rev">
                     <a class="flex flex-justcont-c flex-alignit-c tracker-block-second-issue">New issue</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

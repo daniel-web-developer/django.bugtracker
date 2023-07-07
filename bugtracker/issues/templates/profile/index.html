@@ -1,12 +1,12 @@
 {% extends "header.html" %}
 
 {% block body %}
-<div class="flex flex-justcont-sb main-content profile">
+<div class="flex flex-dir-col main-content profile">
     <h3>{{ profile.username }}</h3>
     {% if user.id == profile.id %}
-
+    <a href="{% url 'tracker' profile.id %}">See your projects</a>
     {% else %}
-    
+    <a href="{% url 'tracker' profile.id %}">See user's projects</a>
     {% endif %}
 </div>
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends "header.html" %}
+
+{% block body %}
+<div class="flex reset flex-justcont-c flex-alignit-c flex-dir-col text-align-c">
+    <div class="flex flex-dir-col flex-alignit-c">
+        <h2 class="login-error">
+            Access denied!
+        </h2>
+        <h4>
+            You're not allowed to access this page.
+        </h4>
+    </div>
+    <h5>
+        Click <a href="{% url 'index' %}">here</a> to go to the main page.
+    </h5>
+</div>
+{% endblock %}

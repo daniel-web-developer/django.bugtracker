@@ -12,6 +12,10 @@ h1 {
   font-size: 96px;
 }
 
+h2 {
+  font-size: 64px;
+}
+
 h3 {
   font-size: 48px;
 }
@@ -31,6 +35,9 @@ p {
 @media screen and (max-width: 639px) {
   h1 {
     font-size: 56px;
+  }
+  h2 {
+    font-size: 48px;
   }
   h3 {
     font-size: 28px;
@@ -84,7 +91,11 @@ body {
 
 .main-content {
   background-color: var(--primary);
-  height: 100vh;
+  height: 100%;
+}
+
+.text-align-c {
+  text-align: center;
 }
 
 @media screen and (max-width: 1023px) {
@@ -209,7 +220,7 @@ header .menu.open span:last-child {
 .content {
   background-color: var(--primary);
   padding: 0 0 0 240px;
-  height: 100vh;
+  height: 100%;
   align-items: center;
 }
 .content-text {
@@ -580,6 +591,17 @@ header .menu.open span:last-child {
 .profile {
   padding: 24px 240px 24px 240px;
   color: var(--bg);
+}
+.profile a {
+  font-size: 20px;
+  color: var(--bg);
+  width: -moz-fit-content;
+  width: fit-content;
+  text-underline-offset: 1px;
+  transition: all 150ms ease-in-out;
+}
+.profile a:hover {
+  text-underline-offset: 4px;
 }
 
 @media screen and (max-width: 639px) {

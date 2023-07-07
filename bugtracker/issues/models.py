@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from datetime import date
-from django.urls import reverse
 from django.conf import settings
+from django.forms import ModelForm
 
 # Create your models here.
 class User(AbstractUser):
@@ -15,6 +15,9 @@ class Project(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     public = models.BooleanField(default=False)
     slug = models.SlugField(max_length=255, unique=True)
+    readonly_fields = ("created_on")
+    # form = newProjectForm
+    
 
 class Ticket(models.Model):
     title = models.CharField(max_length=255)
@@ -25,3 +28,8 @@ class Ticket(models.Model):
     project = models.OneToOneField(Project, blank=False, related_name="tickets", on_delete=models.CASCADE)
     public = models.BooleanField(default=False)
     slug = models.SlugField(max_length=255, unique=True)
+
+# class newProjectForm(ModelForm):
+#     class Meta:
+#         model = Project
+#         fields = ('name', 'public')

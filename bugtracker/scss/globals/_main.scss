@@ -50,7 +50,13 @@ body{
 .main{
     &-content{
         background-color: var(--primary);
-        height: 100vh;
+        height: 100%;
+    }
+}
+
+.text{
+    &-align-c{
+        text-align: center;
     }
 }
 

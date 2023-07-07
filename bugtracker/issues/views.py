@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import User
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.urls import reverse
 
 # Create your views here.
 def index(request):
@@ -22,9 +24,13 @@ def profile(request, profile_id):
 @login_required
 def new_project(request, profile_id):
     profile = User.objects.get(pk = profile_id)
-    return render(request, 'new/project.html', {
-        "profile": profile
-    })
+    if request.user.id == profile_id:
+        return render(request, 'new/project.html', {
+            "profile": profile
+        })
+    else:
+        return render(request, 'registration/access_denied.html')
+
 
 # def new_ticket(request, profile_id):
 #     profile = User.objects.get(pk = profile_id)
