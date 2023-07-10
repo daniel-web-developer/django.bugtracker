@@ -3,7 +3,10 @@ from django.shortcuts import redirect
 from .models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from django.urls import reverse
+from .forms import newProjectForm
+from django.utils import timezone
+from django.template.defaultfilters import slugify
+
 
 # Create your views here.
 def index(request):
@@ -25,9 +28,21 @@ def profile(request, profile_id):
 def new_project(request, profile_id):
     profile = User.objects.get(pk = profile_id)
     if request.user.id == profile_id:
-        return render(request, 'new/project.html', {
-            "profile": profile
-        })
+        if request.method == "POST":
+            form = newProjectForm(request.POST)
+            if form.is_valid():
+                project = form.save(commit=False)
+                project.author = request.user
+                project.created_on = timezone.now()
+                project.save()
+                project.slug = slugify(project.name)
+                return(redirect('tracker', profile.id))
+        else:
+            form = newProjectForm()
+            return render(request, 'new/project.html', {
+                "profile": profile,
+                "form": form
+            })
     else:
         return render(request, 'registration/access_denied.html')
 

@@ -1,9 +1,10 @@
-# import datetime
-# from django import forms
-# from .models import Project
+import datetime
+from django import forms
+from .models import Project
 
-# from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError
 
-# class newProjectForm(forms.Form):
-#     name = models.CharField(max_length=63)
-#     public = models.BooleanField(default=False)
+class newProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('name', 'public')

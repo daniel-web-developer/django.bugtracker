@@ -1,0 +1,27 @@
+.new{
+    color: var(--bg);
+    padding-top: 24px;
+    padding-left: 240px;
+
+    button{
+        cursor: pointer;
+        border: 1px solid var(--bg);
+        background-color: transparent;
+        color: var(--bg);
+        padding: 5px 15px 5px 15px;
+        margin-top: 24px;
+        border-radius: 30px;
+        transition: all 100ms ease-in-out;
+        text-decoration: none;
+        
+        &:hover{
+            border: 1px solid var(--primary);
+            background-color: var(--bg);
+            color: var(--primary);
+        }
+    }
+
+    &-project{
+
+    }
+}
