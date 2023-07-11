@@ -9,7 +9,7 @@ from django.forms import ModelForm
 class User(AbstractUser):
     pass
 
-PRIVACY_OPTIONS = ((True, "Yes"), (False, "No"))
+PRIVACY_OPTIONS = ((True, "Public"), (False, "Private"))
 
 class Project(models.Model):
     name = models.CharField(max_length=63)

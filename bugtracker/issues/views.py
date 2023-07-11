@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from .models import User
+from .models import User, Project
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from .forms import newProjectForm
@@ -15,7 +15,8 @@ def index(request):
 def tracker(request, profile_id):
     profile = User.objects.get(pk = profile_id)
     return render(request, 'tracker/index.html', {
-        "profile": profile
+        "profile": profile,
+        "projects": Project.objects.all()
     })
 
 def profile(request, profile_id):
@@ -34,9 +35,9 @@ def new_project(request, profile_id):
                 project = form.save(commit=False)
                 project.author = request.user
                 project.created_on = timezone.now()
-                project.save()
                 project.slug = slugify(project.name)
-                return(redirect('tracker', profile.id))
+                project.save()
+                return redirect('tracker', profile_id)
         else:
             form = newProjectForm()
             return render(request, 'new/project.html', {
