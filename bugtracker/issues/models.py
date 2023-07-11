@@ -9,11 +9,13 @@ from django.forms import ModelForm
 class User(AbstractUser):
     pass
 
+PRIVACY_OPTIONS = ((True, "Yes"), (False, "No"))
+
 class Project(models.Model):
     name = models.CharField(max_length=63)
     created_on = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    public = models.BooleanField(default=False)
+    public = models.BooleanField(default=False, choices=PRIVACY_OPTIONS)
     slug = models.SlugField(max_length=255, unique=True)    
 
 class Ticket(models.Model):
