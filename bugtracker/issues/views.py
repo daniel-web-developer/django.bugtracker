@@ -22,6 +22,9 @@ def tracker(request, profile_id):
 def project(request, profile_id, project_id):
     profile = User.objects.get(pk = profile_id)
     projectid = Project.objects.get(pk = project_id)
+    # project = Project.objects.all().filter(pk = project_id)
+    # add function to stop unauthorised users from accessing page
+        
     return render(request, 'tracker/projects.html', {
         "profile": profile,
         "projects": Project.objects.all().filter(author = profile_id),
