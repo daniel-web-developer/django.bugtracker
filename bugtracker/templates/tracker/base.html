@@ -1,0 +1,47 @@
+{% extends "header.html" %}
+
+{% block body %}
+<div class="flex flex-justcont-sb tracker">
+    <div>
+        <div class="flex flex-alignit-c flex-justcont-sb tracker-before">
+            <h4 class="tracker-before-nick">{{ profile.username }}</h4>
+        </div>
+        <div class="flex tracker-block">
+            <div class="tracker-block-first">
+                <div class="flex flex-dir-col tracker-block-first-text">
+                    <div class="flex flex-justcont-sb">
+                        <h5 class="tracker-block-first-text-title">Projects</h5>
+                        {% if user.id == profile.id %}
+                        <div class="flex flex-justcont-c flex-alignit-c">
+                            <a href="{% url 'new-project' user.id %}" class="tracker-block-first-text-create">New project</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <ul class="tracker-block-first-text-list">
+                        {% for project in projects %}
+                            {% if user.id == projects.author.username %}
+                                <li>{{ project.name }}</li>
+                            {% else %}
+                                {% if project.public == 1 %}
+                                    <li>{{ project.name }}</li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-dir-col tracker-block-second">
+                <div class="tracker-block-second-search">
+                </div>
+                <div class="tracker-block-second-tickets">
+                </div>
+                {% if user.id == profile.id %}
+                <div class="flex flex-dir-row-rev">
+                    <a href="{% url 'new-ticket' user.id %}" class="flex flex-justcont-c flex-alignit-c tracker-block-second-issue">New issue</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

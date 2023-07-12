@@ -10,13 +10,18 @@ class User(AbstractUser):
     pass
 
 PRIVACY_OPTIONS = ((True, "Public"), (False, "Private"))
+PRIORITY_OPTIONS = (
+    ("0", "Low priority"),
+    ("1", "Medium priority"),
+    ("2", "High priority")
+)
 
 class Project(models.Model):
     name = models.CharField(max_length=63)
     created_on = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     public = models.BooleanField(default=False, choices=PRIVACY_OPTIONS)
-    slug = models.SlugField(max_length=255, unique=True)    
+    slug = models.SlugField(max_length=255, unique=True)  
 
 class Ticket(models.Model):
     title = models.CharField(max_length=255)
@@ -26,4 +31,5 @@ class Ticket(models.Model):
     edited_on = models.DateTimeField(null=True, auto_now=True)
     project = models.OneToOneField(Project, blank=False, related_name="tickets", on_delete=models.CASCADE)
     public = models.BooleanField(default=False)
+    priority = models.SmallIntegerField(default="0", choices=PRIORITY_OPTIONS)
     slug = models.SlugField(max_length=255, unique=True)

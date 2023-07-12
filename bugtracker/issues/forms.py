@@ -19,9 +19,10 @@ class newProjectForm(forms.ModelForm):
 class newTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ('title', 'description', 'public')
+        fields = ('title', 'description', 'public', 'priority')
         widgets = {
-            "public": RadioSelect()
+            "public": RadioSelect(),
+            "priority": RadioSelect()
         }
         labels = {
             "public": "Tickets's privacy status"
