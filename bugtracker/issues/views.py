@@ -19,6 +19,27 @@ def tracker(request, profile_id):
         "projects": Project.objects.all().filter(author = profile_id)
     })
 
+def project(request, profile_id, project_id):
+    profile = User.objects.get(pk = profile_id)
+    projectid = Project.objects.get(pk = project_id)
+    return render(request, 'tracker/projects.html', {
+        "profile": profile,
+        "projects": Project.objects.all().filter(author = profile_id),
+        "theproject": projectid,
+        "tickets": Ticket.objects.all().filter(project = projectid)
+    })
+
+def ticket(request, profile_id, project_id, ticket_id):
+    profile = User.objects.get(pk = profile_id)
+    projectid = Project.objects.get(pk = project_id)
+    ticketid = Ticket.objects.get(pk = project_id)
+    return render(request, 'tracker/projects.html', {
+        "profile": profile,
+        "projects": Project.objects.all().filter(author = profile_id),
+        "theproject": projectid,
+        "tickets": Ticket.objects.all()
+    })
+
 def profile(request, profile_id):
     profile = User.objects.get(pk = profile_id)
     return render(request, 'profile/index.html', {
@@ -37,7 +58,13 @@ def new_project(request, profile_id):
                 project.created_on = timezone.now()
                 project.slug = slugify(project.name)
                 project.save()
-                return redirect('tracker', profile_id)
+                # return redirect('tracker', profile_id)
+                return redirect('project', profile_id, project.id)
+            else:
+                return render(request, 'new/project.html', {
+                    "profile": profile,
+                    "form": form
+                })
         else:
             form = newProjectForm()
             return render(request, 'new/project.html', {
@@ -46,12 +73,11 @@ def new_project(request, profile_id):
             })
     else:
         return render(request, 'registration/access_denied.html')
-    
-# def project(request, profile_id, )
 
 @login_required
-def new_ticket(request, profile_id):
+def new_ticket(request, profile_id, project_id):
     profile = User.objects.get(pk = profile_id)
+    project = Project.objects.get(pk = project_id)
     if request.user.id == profile_id:
         if request.method == "POST":
             form = newTicketForm(request.POST)
@@ -59,9 +85,16 @@ def new_ticket(request, profile_id):
                 ticket = form.save(commit=False)
                 ticket.author = request.user
                 ticket.created_on = timezone.now()
-                ticket.slug = slugify(ticket.name)
+                ticket.project = project
+                ticket.slug = slugify(ticket.title)
                 ticket.save()
-                return redirect('tracker', profile_id)
+                return render(request, 'tracker/projects.html', {
+                    "profile": profile,
+                    "projects": Project.objects.all().filter(author = profile_id),
+                    "theproject": Project.objects.get(pk = project_id),
+                    "tickets": Ticket.objects.all().filter(project = profile_id)
+                })
+                # return redirect('project', profile_id)
         else:
             form = newTicketForm()
             return render(request, 'new/ticket.html', {

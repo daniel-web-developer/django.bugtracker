@@ -19,11 +19,11 @@
                     </div>
                     <ul class="tracker-block-first-text-list">
                         {% for project in projects %}
-                            {% if user.id == projects.author.username %}
-                                <li>{{ project.name }}</li>
+                            {% if project.public == 1 %}
+                                <li><a href="{% url 'project' profile.id project.id %}">{{ project.name }}</a></li>
                             {% else %}
-                                {% if project.public == 1 %}
-                                    <li>{{ project.name }}</li>
+                                {% if user.id == project.author.id %}
+                                <li><a href="{% url 'project' profile.id project.id %}">{{ project.name }}</a></li>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
@@ -34,10 +34,21 @@
                 <div class="tracker-block-second-search">
                 </div>
                 <div class="tracker-block-second-tickets">
+                    <ul class="tracker-block-second-tickets-text">
+                        {% for ticket in tickets %}
+                            {% if ticket.public == 1 %}
+                                <li><a>{{ ticket.title }}</a></li>
+                            {% else %}
+                                {% if user.id == ticket.author.id %}
+                                    <li><a>{{ ticket.title }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
                 </div>
                 {% if user.id == profile.id %}
                 <div class="flex flex-dir-row-rev">
-                    <a href="{% url 'new-ticket' user.id %}" class="flex flex-justcont-c flex-alignit-c tracker-block-second-issue">New issue</a>
+                    <a href="{% url 'new-ticket' user.id theproject.id %}" class="flex flex-justcont-c flex-alignit-c tracker-block-second-issue">New issue</a>
                 </div>
                 {% endif %}
             </div>

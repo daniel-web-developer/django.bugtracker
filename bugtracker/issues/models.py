@@ -11,9 +11,9 @@ class User(AbstractUser):
 
 PRIVACY_OPTIONS = ((True, "Public"), (False, "Private"))
 PRIORITY_OPTIONS = (
-    ("0", "Low priority"),
-    ("1", "Medium priority"),
-    ("2", "High priority")
+    (0, "Low priority"),
+    (1, "Medium priority"),
+    (2, "High priority")
 )
 
 class Project(models.Model):
@@ -21,15 +21,18 @@ class Project(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     public = models.BooleanField(default=False, choices=PRIVACY_OPTIONS)
-    slug = models.SlugField(max_length=255, unique=True)  
+    slug = models.SlugField(max_length=255, unique=True)
+    
+    def __str__(self):
+        return self.author.username
 
 class Ticket(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     edited_on = models.DateTimeField(null=True, auto_now=True)
-    project = models.OneToOneField(Project, blank=False, related_name="tickets", on_delete=models.CASCADE)
-    public = models.BooleanField(default=False)
+    project = models.ForeignKey(Project, blank=False, related_name="tickets", on_delete=models.CASCADE)
+    public = models.BooleanField(default=False, choices=PRIVACY_OPTIONS)
     priority = models.SmallIntegerField(default="0", choices=PRIORITY_OPTIONS)
     slug = models.SlugField(max_length=255, unique=True)

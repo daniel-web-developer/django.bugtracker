@@ -4,8 +4,9 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('<int:profile_id>/tracker/', views.tracker, name="tracker"),
+    path('tracker/<int:profile_id>/', views.tracker, name="tracker"),
     path('<int:profile_id>/', views.profile, name="profile-index"),
-    path('<int:profile_id>/new_project/', views.new_project, name="new-project"),
-    path('<int:profile_id>/new_ticket/', views.new_ticket, name="new-ticket")
+    path('new_project/<int:profile_id>/', views.new_project, name="new-project"),
+    path('new_ticket/<int:profile_id>/<int:project_id>/', views.new_ticket, name="new-ticket"),
+    path('tracker/<int:profile_id>/<int:project_id>', views.project, name="project"),
 ]
