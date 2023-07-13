@@ -34,15 +34,22 @@
                 <div class="tracker-block-second-search">
                 </div>
                 <div class="tracker-block-second-tickets">
+                    <div class="flex tracker-block-second-categories">
+                        <p>Title</p>
+                    </div>
+                    <div class="tracker-block-second-border"></div>
                     <ul class="tracker-block-second-tickets-text">
                         {% for ticket in tickets %}
                             {% if ticket.public == 1 %}
-                                <li><a>{{ ticket.title }}</a></li>
+                            <a href="{% url 'ticket' profile.id ticket.project.id ticket.id %}"><li>{{ ticket.title }}</li></a>
                             {% else %}
                                 {% if user.id == ticket.author.id %}
-                                    <li><a>{{ ticket.title }}</a></li>
+                                    <a href="{% url 'ticket' profile.id ticket.project.id ticket.id %}"><li>{{ ticket.title }}</li></a>
                                 {% endif %}
                             {% endif %}
+                            <div class="tracker-block-second-border">
+
+                            </div>
                         {% endfor %}
                     </ul>
                 </div>

@@ -1,0 +1,19 @@
+{% extends "header.html" %}
+
+{% block body %}
+<div class="flex flex-dir-col ticket">
+    <h3>{{ profile.username }}</h3>
+    <div class="flex flex-alignit-c">
+        <h4>{{ ticket.project.name }}: {{ ticket.title }}</h4>
+        <h5>{{ ticket.created_on }}</h5>
+        {% if ticket.edited_on != None %}
+            <h5>{{ ticket.edited_on }}</h5>
+        {% endif %}
+    </div>
+    <p>{{ ticket.get_priority_display }}</p>
+    <div class="ticket-description">
+        <h5>Description:</h5>
+        <p>{{ ticket.description }}</p>
+    </div>
+</div>
+{% endblock %}
