@@ -20,11 +20,16 @@
                     <ul class="tracker-block-first-text-list">
                         {% for project in projects %}
                             {% if project.public == 1 %}
-                                <li><a href="{% url 'project' profile.id project.id %}">{{ project.name }}</a></li>
+                                <a href="{% url 'project' profile.id project.id %}"><li>{{ project.name }}</li></a>
                             {% else %}
                                 {% if user.id == project.author.id %}
-                                <li><a href="{% url 'project' profile.id project.id %}">{{ project.name }}</a></li>
+                                <a href="{% url 'project' profile.id project.id %}"><li>{{ project.name }}</li></a>
                                 {% endif %}
+                            {% endif %}
+                            {% if forloop.last %}
+                            {% else %}
+                                <div class="tracker-block-second-border">
+                                </div>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -47,9 +52,11 @@
                                     <a href="{% url 'ticket' profile.id ticket.project.id ticket.id %}"><li>{{ ticket.title }}</li></a>
                                 {% endif %}
                             {% endif %}
-                            <div class="tracker-block-second-border">
-
-                            </div>
+                            {% if forloop.last %}
+                            {% else %}
+                                <div class="tracker-block-second-border">
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>

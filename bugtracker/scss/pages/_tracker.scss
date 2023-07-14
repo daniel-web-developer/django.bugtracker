@@ -60,6 +60,7 @@
 
                     a{
                         color: var(--bg);
+                        text-decoration: none;
                     }
                 }
                 
@@ -152,12 +153,29 @@
 .ticket{
     background-color: var(--primary);
     height: 100%;
-    padding-top: 24px;
-    padding-left: 240px;
+    padding: 24px 240px 0 240px;
     color: var(--bg);
 
     &-description{
         padding-top: 16px;
+    }
+
+    &-edit{
+        cursor: pointer;
+        border: 1px solid var(--bg);
+        background-color: transparent;
+        color: var(--bg);
+        height: 32px;
+        width: 112px;
+        border-radius: 100px;
+        transition: all 100ms ease-in-out;
+        text-decoration: none;
+        
+        &:hover{
+            border: 1px solid var(--primary);
+            background-color: var(--bg);
+            color: var(--primary);
+        }
     }
 }
 

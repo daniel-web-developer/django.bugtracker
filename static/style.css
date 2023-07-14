@@ -91,7 +91,7 @@ body {
 
 .main-content {
   background-color: var(--primary);
-  height: 100%;
+  min-height: 100%;
 }
 
 .text-align-c {
@@ -460,6 +460,7 @@ header .menu.open span:last-child {
 }
 .tracker-block-first-text ul a {
   color: var(--bg);
+  text-decoration: none;
 }
 .tracker-block-first-text li {
   list-style: none;
@@ -530,12 +531,27 @@ header .menu.open span:last-child {
 .ticket {
   background-color: var(--primary);
   height: 100%;
-  padding-top: 24px;
-  padding-left: 240px;
+  padding: 24px 240px 0 240px;
   color: var(--bg);
 }
 .ticket-description {
   padding-top: 16px;
+}
+.ticket-edit {
+  cursor: pointer;
+  border: 1px solid var(--bg);
+  background-color: transparent;
+  color: var(--bg);
+  height: 32px;
+  width: 112px;
+  border-radius: 100px;
+  transition: all 100ms ease-in-out;
+  text-decoration: none;
+}
+.ticket-edit:hover {
+  border: 1px solid var(--primary);
+  background-color: var(--bg);
+  color: var(--primary);
 }
 
 @media screen and (max-width: 809px) {
@@ -657,8 +673,7 @@ header .menu.open span:last-child {
 }
 .new {
   color: var(--bg);
-  padding-top: 24px;
-  padding-left: 240px;
+  padding: 24px 240px 24px 240px;
 }
 .new button {
   cursor: pointer;

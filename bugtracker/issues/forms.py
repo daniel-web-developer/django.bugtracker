@@ -27,3 +27,17 @@ class newTicketForm(forms.ModelForm):
         labels = {
             "public": "Tickets's privacy status"
         }
+
+class editTicketForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = ('title', 'description', 'priority', 'public', 'solved')
+        widgets = {
+            "public": RadioSelect(),
+            "priority": RadioSelect(),
+            "solved": RadioSelect()
+        }
+        labels = {
+            "public": "Tickets's privacy status",
+            "solved": "Is the ticket solved?"
+        }

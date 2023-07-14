@@ -3,12 +3,15 @@
 {% block body %}
 <div class="flex flex-dir-col ticket">
     <h3>{{ profile.username }}</h3>
-    <div class="flex flex-alignit-c">
-        <h4>{{ ticket.project.name }}: {{ ticket.title }}</h4>
-        <h5>{{ ticket.created_on }}</h5>
-        {% if ticket.edited_on != None %}
-            <h5>{{ ticket.edited_on }}</h5>
-        {% endif %}
+    <div class="flex flex-alignit-c flex-justcont-sb">
+        <div class="flex flex-alignit-c">
+            <h4>{{ ticket.project.name }}: {{ ticket.title }}</h4>
+            <h5>{{ ticket.created_on }}</h5>
+            {% if ticket.edited_on != None %}
+                <h5>{{ ticket.edited_on }}</h5>
+            {% endif %}
+        </div>
+        <a href="{% url 'edit-ticket' profile.id project.id ticket.id %}" class="flex flex-justcont-c flex-alignit-c ticket-edit">Edit ticket</a>
     </div>
     <p>{{ ticket.get_priority_display }}</p>
     <div class="ticket-description">
