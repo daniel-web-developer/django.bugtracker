@@ -537,6 +537,9 @@ header .menu.open span:last-child {
 .ticket-description {
   padding-top: 16px;
 }
+.ticket-padding-title {
+  padding-right: 24px;
+}
 .ticket-edit {
   cursor: pointer;
   border: 1px solid var(--bg);
@@ -552,6 +555,9 @@ header .menu.open span:last-child {
   border: 1px solid var(--primary);
   background-color: var(--bg);
   color: var(--primary);
+}
+.ticket a {
+  color: var(--bg);
 }
 
 @media screen and (max-width: 809px) {

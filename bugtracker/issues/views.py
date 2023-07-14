@@ -43,7 +43,7 @@ def ticket(request, profile_id, project_id, ticket_id):
     profile = get_object_or_404(User, pk = profile_id)
     projectid = get_object_or_404(Project, pk = project_id)
     ticketid = get_object_or_404(Ticket, pk = ticket_id)
-    if ticketid.public == 1:
+    if ticketid.public == 1 and projectid.public == 1:
         return render(request, 'tracker/ticket.html', {
             "profile": profile,
             "projects": Project.objects.all().filter(author = profile_id),
@@ -111,12 +111,7 @@ def new_ticket(request, profile_id, project_id):
                 ticket.solved = 0
                 ticket.slug = slugify(ticket.title)
                 ticket.save()
-                return render(request, 'tracker/projects.html', {
-                    "profile": profile,
-                    "projects": Project.objects.all().filter(author = profile_id),
-                    "theproject": Project.objects.get(pk = project_id),
-                    "tickets": Ticket.objects.all().filter(project = profile_id)
-                })
+                return redirect('project', profile.id, project.id)
         else:
             form = newTicketForm()
             return render(request, 'new/ticket.html', {
@@ -142,12 +137,13 @@ def edit_ticket(request, profile_id, project_id, ticket_id):
                 ticket.project = projectid
                 ticket.slug = slugify(ticket.title)
                 ticket.save()
-                return render(request, 'tracker/ticket.html', {
-                    "profile": profile,
-                    "projects": Project.objects.all().filter(author = profile_id),
-                    "project": projectid,
-                    "ticket": ticketid
-                })
+                # return render(request, 'tracker/ticket.html', {
+                #     "profile": profile,
+                #     "projects": Project.objects.all().filter(author = profile_id),
+                #     "project": projectid,
+                #     "ticket": ticketid
+                # })
+                return redirect('ticket', profile.id, projectid.id, ticketid.id)
             else:
                 return render(request, 'registration/access_denied.html')
         else:
