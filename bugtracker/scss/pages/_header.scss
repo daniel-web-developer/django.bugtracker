@@ -1,8 +1,9 @@
 @use '../globals/typography' as *;
 
 header{
-    margin: 19px 240px 19px 240px;
+    padding: 19px 240px 19px 240px;
     align-items: center;
+    background-color: var(--bg);
 
     .logo{
         font-size: 28px;
@@ -114,12 +115,12 @@ header{
 
 @media screen and (max-width: 639px){
     header{
-        margin: 16px 32px 16px 23px;
+        padding: 16px 32px 16px 23px;
     }
 }
 
 @media screen and (min-width: 640px) and (max-width: 1024px){
     header{
-        margin: 32px 120px 32px 120px;
+        padding: 32px 120px 32px 120px;
     }
 }

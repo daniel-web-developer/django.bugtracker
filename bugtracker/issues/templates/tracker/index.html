@@ -20,10 +20,10 @@
                     <ul class="tracker-block-first-text-list">
                         {% for project in projects %}
                             {% if project.public == 1 %}
-                                <a href="{% url 'project' profile.id project.id %}"><li>{{ project.name }}</li></a>
+                                <a href="{% url 'project' profile.id project.permalink %}"><li>{{ project.name }}</li></a>
                             {% else %}
                                 {% if user.id == project.author.id %}
-                                <a href="{% url 'project' profile.id project.id %}"><li>{{ project.name }}</li></a>
+                                <a href="{% url 'project' profile.id project.permalink %}"><li>{{ project.name }}</li></a>
                                 {% endif %}
                             {% endif %}
                             {% if forloop.last %}

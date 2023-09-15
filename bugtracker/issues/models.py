@@ -22,7 +22,7 @@ class Project(models.Model):
     created_on = models.DateTimeField(auto_now_add=True, editable=False)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     public = models.BooleanField(default=False, choices=PRIVACY_OPTIONS)
-    slug = models.SlugField(max_length=255, unique=True)
+    permalink = models.CharField(max_length = 10, unique=True)
     
     def __str__(self):
         return self.author.username
@@ -37,4 +37,6 @@ class Ticket(models.Model):
     public = models.BooleanField(default=False, choices=PRIVACY_OPTIONS)
     priority = models.SmallIntegerField(default="0", choices=PRIORITY_OPTIONS)
     solved = models.BooleanField(default=False, choices=SOLVED_OPTIONS)
-    slug = models.SlugField(max_length=255, unique=False)
+    permalink = models.CharField(max_length = 10, unique=True)
+
+

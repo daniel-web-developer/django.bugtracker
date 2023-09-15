@@ -19,8 +19,17 @@
             color: var(--primary);
         }
     }
-
-    // &-project{
-
-    // }
 }
+
+@media screen and (min-width: 640px) and (max-width: 1024px){
+    .new{
+        padding: 0 120px 0 120px;
+    }
+}
+
+@media screen and (max-width: 639px){
+    .new{
+        padding: 0 32px 0 32px;
+    }
+}
+

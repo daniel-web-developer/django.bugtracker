@@ -3,10 +3,19 @@ from .models import User, Project, Ticket
 from django.contrib.auth.decorators import login_required
 from .forms import newProjectForm, newTicketForm, editTicketForm
 from django.utils import timezone
+import secrets
 from django.template.defaultfilters import slugify
 
 
 # Create your views here.
+def generate_permalink(newObject):
+    while (True):
+        permalink = secrets.token_urlsafe(10)[:10]
+        if newObject.objects.filter(permalink = permalink).count() == 0:
+            break
+    return permalink
+
+
 def index(request):
     return render(request, 'index/index.html')
     
@@ -17,10 +26,9 @@ def tracker(request, profile_id):
         "projects": Project.objects.all().filter(author = profile_id)
     })
 
-def project(request, profile_id, project_id):
+def project(request, profile_id, project_link):
     profile = get_object_or_404(User, pk = profile_id)
-    projectid = get_object_or_404(Project, pk = project_id)
-    # project = Project.objects.all().filter(pk = project_id)
+    projectid = get_object_or_404(Project, permalink = project_link)
     if projectid.public == 1:
         return render(request, 'tracker/projects.html', {
                 "profile": profile,
@@ -39,10 +47,10 @@ def project(request, profile_id, project_id):
         else:
             return render(request, 'registration/access_denied.html')
 
-def ticket(request, profile_id, project_id, ticket_id):
+def ticket(request, profile_id, project_link, ticket_link):
     profile = get_object_or_404(User, pk = profile_id)
-    projectid = get_object_or_404(Project, pk = project_id)
-    ticketid = get_object_or_404(Ticket, pk = ticket_id)
+    projectid = get_object_or_404(Project, permalink = project_link)
+    ticketid = get_object_or_404(Ticket, permalink = ticket_link)
     if ticketid.public == 1 and projectid.public == 1:
         return render(request, 'tracker/ticket.html', {
             "profile": profile,
@@ -77,10 +85,9 @@ def new_project(request, profile_id):
                 project = form.save(commit=False)
                 project.author = request.user
                 project.created_on = timezone.now()
-                project.slug = slugify(project.name)
+                project.permalink = generate_permalink(Project)
                 project.save()
-                # return redirect('tracker', profile_id)
-                return redirect('project', profile_id, project.id)
+                return redirect('project', profile_id, project.permalink)
             else:
                 return render(request, 'new/project.html', {
                     "profile": profile,
@@ -95,10 +102,9 @@ def new_project(request, profile_id):
     else:
         return render(request, 'registration/access_denied.html')
 
-# @login_required
-def new_ticket(request, profile_id, project_id):
+def new_ticket(request, profile_id, project_link):
     profile = get_object_or_404(User, pk = profile_id)
-    project = get_object_or_404(Project, pk = project_id)
+    project = get_object_or_404(Project, permalink = project_link)
     if request.user.id == profile_id:
         if request.method == "POST":
             form = newTicketForm(request.POST)
@@ -109,9 +115,9 @@ def new_ticket(request, profile_id, project_id):
                 ticket.edited_on = None
                 ticket.project = project
                 ticket.solved = 0
-                ticket.slug = slugify(ticket.title)
+                ticket.permalink = generate_permalink(Ticket)
                 ticket.save()
-                return redirect('project', profile.id, project.id)
+                return redirect('project', profile.id, project.permalink)
         else:
             form = newTicketForm()
             return render(request, 'new/ticket.html', {
@@ -122,10 +128,10 @@ def new_ticket(request, profile_id, project_id):
         return render(request, 'registration/access_denied.html')
 
 @login_required
-def edit_ticket(request, profile_id, project_id, ticket_id):
+def edit_ticket(request, profile_id, project_link, ticket_link):
     profile = get_object_or_404(User, pk = profile_id)
-    projectid = get_object_or_404(Project, pk = project_id)
-    ticketid = get_object_or_404(Ticket, pk = ticket_id)
+    projectid = get_object_or_404(Project, permalink = project_link)
+    ticketid = get_object_or_404(Ticket, permalink = ticket_link)
     if request.user.id == profile_id:
         if request.method == "POST":
             form = editTicketForm(request.POST, instance=ticketid)
@@ -135,15 +141,9 @@ def edit_ticket(request, profile_id, project_id, ticket_id):
                 ticket.created_on = ticket.created_on
                 ticket.edited_on = timezone.now()
                 ticket.project = projectid
-                ticket.slug = slugify(ticket.title)
+                ticket.permalink = ticket.permalink
                 ticket.save()
-                # return render(request, 'tracker/ticket.html', {
-                #     "profile": profile,
-                #     "projects": Project.objects.all().filter(author = profile_id),
-                #     "project": projectid,
-                #     "ticket": ticketid
-                # })
-                return redirect('ticket', profile.id, projectid.id, ticketid.id)
+                return redirect('ticket', profile.id, projectid.permalink, ticketid.permalink)
             else:
                 return render(request, 'registration/access_denied.html')
         else:
@@ -151,3 +151,5 @@ def edit_ticket(request, profile_id, project_id, ticket_id):
             return render(request, 'edit/ticket.html', {'form': form})
     else:
         return render(request, 'registration/access_denied.html')
+
+

@@ -4,6 +4,14 @@
     padding-top: 24px;
     justify-content: center;
 
+    &-active{
+        color: var(--primary) !important;
+
+        li{
+            padding-left: 4px;
+            background-color: var(--bg);
+        }
+    }
 
     &-before{
         padding-bottom: 8px;
@@ -207,7 +215,7 @@
 
             &-first{
                 width: 95%;
-                height: fit-content;
+                height: 25vh;
                 padding: 4px;
                 margin-top: 8px;
                 margin-left: 0;
@@ -226,11 +234,13 @@
             }
 
             &-second{
+                height: 50vh;
                 width: 95%;
                 margin: 0;
                 margin-top: 8px;
 
                 &-search{
+                    height: 70px;
                     width: 100%;
                 }
 

@@ -20,10 +20,18 @@
                     <ul class="tracker-block-first-text-list">
                         {% for project in projects %}
                             {% if project.public == 1 %}
-                                <a href="{% url 'project' profile.id project.id %}"><li>{{ project.name }}</li></a>
+                                {% if project.permalink == theproject.permalink %}
+                                    <a href="{% url 'project' profile.id project.permalink %}" class="tracker-active"><li>{{ project.name }}</li></a>
+                                {% else %}
+                                    <a href="{% url 'project' profile.id project.permalink %}"><li>{{ project.name }}</li></a>
+                                {% endif %}
                             {% else %}
                                 {% if user.id == project.author.id %}
-                                <a href="{% url 'project' profile.id project.id %}"><li>{{ project.name }}</li></a>
+                                    {% if project.permalink == theproject.permalink %}
+                                        <a href="{% url 'project' profile.id project.permalink %}" class="tracker-active"><li>{{ project.name }}</li></a>
+                                    {% else %}
+                                        <a href="{% url 'project' profile.id project.permalink %}"><li>{{ project.name }}</li></a>
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                             {% if forloop.last %}
@@ -46,10 +54,10 @@
                     <ul class="tracker-block-second-tickets-text">
                         {% for ticket in tickets %}
                             {% if ticket.public == 1 %}
-                            <a href="{% url 'ticket' profile.id ticket.project.id ticket.id %}"><li>{{ ticket.title }}</li></a>
+                            <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}"><li>{{ ticket.title }}</li></a>
                             {% else %}
                                 {% if user.id == ticket.author.id %}
-                                    <a href="{% url 'ticket' profile.id ticket.project.id ticket.id %}"><li>{{ ticket.title }}</li></a>
+                                    <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}"><li>{{ ticket.title }}</li></a>
                                 {% endif %}
                             {% endif %}
                             {% if forloop.last %}
@@ -62,7 +70,7 @@
                 </div>
                 {% if user.id == profile.id %}
                 <div class="flex flex-dir-row-rev">
-                    <a href="{% url 'new-ticket' user.id theproject.id %}" class="flex flex-justcont-c flex-alignit-c tracker-block-second-issue">New issue</a>
+                    <a href="{% url 'new-ticket' user.id theproject.permalink %}" class="flex flex-justcont-c flex-alignit-c tracker-block-second-issue">New issue</a>
                 </div>
                 {% endif %}
             </div>
