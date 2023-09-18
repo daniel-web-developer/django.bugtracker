@@ -31,8 +31,8 @@ def tracker(request, profile_id):
 def project(request, profile_id, project_link):
     profile = get_object_or_404(User, pk = profile_id)
     projectid = get_object_or_404(Project, permalink = project_link)
-    if request.method == "GET":
-        query = request.GET.get("q", '')
+    if request.method == "POST":
+        query = request.POST.get("q")
         if query == None:
             if projectid.public == 1:
                 return render(request, 'tracker/projects.html', {
