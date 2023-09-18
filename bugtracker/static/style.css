@@ -497,19 +497,15 @@ header .menu.open span:last-child {
   color: var(--bg);
   background-color: transparent;
   border-radius: 20px;
+  overflow: scroll;
   margin-bottom: 16px;
 }
 .tracker-block-second-tickets-text {
   height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  width: 834px;
+  overflow: scroll;
   padding-left: 0;
   margin: 0;
-}
-.tracker-block-second-tickets-text li {
-  padding-left: 16px;
-  list-style: none;
 }
 .tracker-block-second-tickets-text a {
   color: var(--bg);
@@ -532,13 +528,30 @@ header .menu.open span:last-child {
   color: var(--primary);
 }
 .tracker-block-second-border {
-  width: 100%;
+  width: 834px;
   margin-top: 2px;
   margin-bottom: 2px;
   border-bottom: 1px solid var(--bg);
 }
 .tracker-block-second-categories {
+  position: relative;
   padding-left: 16px;
+  padding-right: 16px;
+  white-space: nowrap;
+}
+.tracker-block-second-categories :first-child {
+  padding-left: 0;
+  min-width: 400px;
+  overflow: clip;
+}
+.tracker-block-second-categories :nth-child(2) {
+  padding-left: 4px;
+  min-width: 156px;
+  border-left: 1px solid var(--bg);
+}
+.tracker-block-second-categories :nth-child(3) {
+  padding-left: 4px;
+  border-left: 1px solid var(--bg);
 }
 
 .ticket {
@@ -663,7 +676,6 @@ header .menu.open span:last-child {
   }
   .tracker-block-second {
     position: relative;
-    width: calc(95vw - 318px);
     margin: 0;
     margin-top: 16px;
     margin-right: 8px;

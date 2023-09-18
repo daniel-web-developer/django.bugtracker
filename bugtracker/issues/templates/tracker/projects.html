@@ -51,21 +51,20 @@
                 <div class="tracker-block-second-tickets">
                     <div class="flex tracker-block-second-categories">
                         <p>Title</p>
+                        <p>Priority</p>
+                        <p>Last updated</p>
                     </div>
                     <div class="tracker-block-second-border"></div>
                     <ul class="tracker-block-second-tickets-text">
                         {% for ticket in tickets %}
                             {% if ticket.public == 1 %}
-                            <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}"><li>{{ ticket.title }}</li></a>
+                                <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}" class="flex tracker-block-second-categories"><p>{{ ticket.title }}</p><p>{{ ticket.get_priority_display }}</p>{% if ticket.edited_on %}<p>{{ ticket.edited_on }}</p>{% else %}<p>{{ ticket.created_on }}</p>{% endif %}</a>
+                                <div class="tracker-block-second-border"></div>
                             {% else %}
                                 {% if user.id == ticket.author.id %}
-                                    <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}"><li>{{ ticket.title }}</li></a>
+                                <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}" class="flex tracker-block-second-categories"><p>{{ ticket.title }}</p><p>{{ ticket.get_priority_display }}</p>{% if ticket.edited_on %}<p>{{ ticket.edited_on }}</p>{% else %}<p>{{ ticket.created_on }}</p>{% endif %}</a>
+                                <div class="tracker-block-second-border"></div>
                                 {% endif %}
-                            {% endif %}
-                            {% if forloop.last %}
-                            {% else %}
-                                <div class="tracker-block-second-border">
-                                </div>
                             {% endif %}
                         {% endfor %}
                     </ul>
