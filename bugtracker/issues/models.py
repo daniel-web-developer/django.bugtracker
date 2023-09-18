@@ -39,4 +39,6 @@ class Ticket(models.Model):
     solved = models.BooleanField(default=False, choices=SOLVED_OPTIONS)
     permalink = models.CharField(max_length = 10, unique=True)
 
+    def __str__(self):
+        return self.title
 

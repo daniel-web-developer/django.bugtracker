@@ -89,8 +89,15 @@
                 margin-bottom: 16px;
 
                 border: 1px solid var(--bg);
+                color: var(--bg);
                 background-color: transparent;
                 border-radius: 20px;
+                padding: 16px;
+
+                &::placeholder{
+                    opacity: 1;
+                    color: var(--bg);
+                }
             }
 
             &-tickets{
@@ -164,6 +171,11 @@
     padding: 24px 240px 0 240px;
     color: var(--bg);
 
+    &-dates{
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
     &-description{
         padding-top: 16px;
     }
@@ -174,13 +186,27 @@
         }
     }
 
+    &-confirm{
+        &-dn{
+            display: none;
+        }
+    }
+
+    &-buttons{
+        :nth-child(2){
+            margin-left: 16px;
+        }
+    }
+
     &-edit{
         cursor: pointer;
+        padding: 5px;
+        white-space: nowrap;
         border: 1px solid var(--bg);
         background-color: transparent;
         color: var(--bg);
         height: 32px;
-        width: 112px;
+        min-width: 40px;
         border-radius: 100px;
         transition: all 100ms ease-in-out;
         text-decoration: none;
@@ -316,3 +342,32 @@
         }
     }
 }
+
+@media screen and (max-width: 1024px){
+    .ticket{
+        padding: 8px 32px 8px 32px;
+
+        &-dates{
+            flex-direction: column;
+        }
+
+        &-buttons{
+            flex-direction: column;
+
+            :nth-child(2){
+                margin-top: 16px;
+                margin-left: 0;
+            }
+        }
+
+        &-edit{
+            width: fit-content;
+            margin-left: 0;
+        } 
+    }
+
+    .mobile{
+        flex-direction: column;
+    }
+}
+

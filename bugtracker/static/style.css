@@ -330,7 +330,7 @@ header .menu.open span:last-child {
 }
 .login-error {
   color: var(--danger);
-  background-color: var(--primary);
+  background-color: var(--bg);
   margin-top: -48px !important;
 }
 
@@ -481,8 +481,14 @@ header .menu.open span:last-child {
   width: 834px;
   margin-bottom: 16px;
   border: 1px solid var(--bg);
+  color: var(--bg);
   background-color: transparent;
   border-radius: 20px;
+  padding: 16px;
+}
+.tracker-block-second-search::placeholder {
+  opacity: 1;
+  color: var(--bg);
 }
 .tracker-block-second-tickets {
   height: 564px;
@@ -541,19 +547,31 @@ header .menu.open span:last-child {
   padding: 24px 240px 0 240px;
   color: var(--bg);
 }
+.ticket-dates {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
 .ticket-description {
   padding-top: 16px;
 }
 .ticket-padding-title {
   padding-right: 24px;
 }
+.ticket-confirm-dn {
+  display: none;
+}
+.ticket-buttons :nth-child(2) {
+  margin-left: 16px;
+}
 .ticket-edit {
   cursor: pointer;
+  padding: 5px;
+  white-space: nowrap;
   border: 1px solid var(--bg);
   background-color: transparent;
   color: var(--bg);
   height: 32px;
-  width: 112px;
+  min-width: 40px;
   border-radius: 100px;
   transition: all 100ms ease-in-out;
   text-decoration: none;
@@ -660,6 +678,28 @@ header .menu.open span:last-child {
     height: 580px;
     width: 100%;
     margin-bottom: 8px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .ticket {
+    padding: 8px 32px 8px 32px;
+  }
+  .ticket-dates {
+    flex-direction: column;
+  }
+  .ticket-buttons {
+    flex-direction: column;
+  }
+  .ticket-buttons :nth-child(2) {
+    margin-top: 16px;
+    margin-left: 0;
+  }
+  .ticket-edit {
+    width: fit-content;
+    margin-left: 0;
+  }
+  .mobile {
+    flex-direction: column;
   }
 }
 .profile {

@@ -10,34 +10,34 @@ class newProjectForm(forms.ModelForm):
         model = Project
         fields = ('name', 'public')
         widgets = {
-            "public": RadioSelect()
-        }
+                "public": RadioSelect()
+                }
         labels = {
-            "public": "Project's privacy status"
-        }
+                "public": "Project's privacy status"
+                }
 
 class newTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ('title', 'description', 'priority', 'public')
         widgets = {
-            "public": RadioSelect(),
-            "priority": RadioSelect()
-        }
+                "public": RadioSelect(),
+                "priority": RadioSelect()
+                }
         labels = {
-            "public": "Tickets's privacy status"
-        }
+                "public": "Tickets's privacy status"
+                }
 
 class editTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ('title', 'description', 'priority', 'public', 'solved')
         widgets = {
-            "public": RadioSelect(),
-            "priority": RadioSelect(),
-            "solved": RadioSelect()
-        }
+                "public": RadioSelect(),
+                "priority": RadioSelect(),
+                "solved": RadioSelect()
+                }
         labels = {
-            "public": "Tickets's privacy status",
-            "solved": "Is the ticket solved?"
-        }
+                "public": "Tickets's privacy status",
+                "solved": "Is the ticket solved?"
+                }
