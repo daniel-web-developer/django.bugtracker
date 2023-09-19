@@ -1,4 +1,4 @@
-#!/home/coder/Desktop/coding/docker/real-websites/django/bugtracker/env/bin/python3
+#!/home/coder/Desktop/coding/docker/django/first-bug/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
