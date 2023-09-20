@@ -1,0 +1,67 @@
+# BUILDER #
+
+# using the official python image with Alpine Linux
+FROM python:3.10.6-alpine as builder
+
+# to set the work directory
+WORKDIR /app
+
+# python environment variables. Read more in https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUNBUFFERED and https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUNBUFFERED
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# updating and installing system dependencies
+RUN apk update \
+    && apk add gcc
+
+# update pip
+RUN pip install --upgrade pip
+
+# installing python dependencies
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
+
+
+# FINAL #
+
+# pulling the official image again
+FROM python:3.10.6-alpine
+
+# creating a directory for the app user
+RUN mkdir -p /home/app
+
+# creating the app user
+RUN addgroup -S app && adduser -S app -G app
+
+# creating directories (inside the app user's directory set above)
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
+WORKDIR $APP_HOME
+
+# installing OS and Python dependencies
+RUN apk update \
+    && apk add postgresql-dev gcc python3-dev musl-dev
+COPY --from=builder /app/wheels /wheels
+COPY --from=builder /app/requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install --no-cache /wheels/*
+
+# copying entrypoint.prod.sh to the work directory, running a stream editor, then allowing user to execute the file
+COPY ./entrypoint.prod.sh .
+RUN sed -i 's/\r$//g' $APP_HOME/entrypoint.prod.sh
+RUN chmod +x $APP_HOME/entrypoint.prod.sh
+
+# copying everything from this directory to $APP_HOME, the user's directory
+COPY . $APP_HOME
+
+# giving the user's permission over the files
+RUN chown -R app:app $APP_HOME
+
+# changing to the user
+USER app
+
+# running the entrypoint file as soon as the container starts
+ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
+
