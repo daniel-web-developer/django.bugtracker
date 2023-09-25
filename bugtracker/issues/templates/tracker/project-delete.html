@@ -1,0 +1,9 @@
+{% extends "header.html" %}
+
+{% block body %}
+<div class="flex flex-dir-col ticket main-content">
+    <p>Project successfully deleted!</p>
+    <a href="{% url 'tracker' profile.id %}">Back to the bugtracker</a>
+</div>
+{% endblock %}
+

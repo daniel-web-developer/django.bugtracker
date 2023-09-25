@@ -16,6 +16,7 @@
                 <a href="{% url 'profile-index' user.id %}" class="header-btns">Your profile</a>
             {% else %}
                 <a href="{% url 'login' %}" class="header-btns">Log in</a>
+                <a href="{% url 'register' %}" class="header-btns">Sign up</a>
             {% endif %}
         </div>
         <div id="menu" class="display-none-desktop menu">

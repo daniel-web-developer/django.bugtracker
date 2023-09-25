@@ -146,7 +146,6 @@
             }
 
             &-border{
-                width: 834px;
                 margin-top: 2px;
                 margin-bottom: 2px;
                 border-bottom: 1px solid var(--bg);
@@ -236,6 +235,11 @@
     a{
         color: var(--bg);
     }
+}
+
+.project-buttons{
+    margin-top: auto;
+    padding-bottom: 24px;
 }
 
 @media screen and (max-width: 809px) {

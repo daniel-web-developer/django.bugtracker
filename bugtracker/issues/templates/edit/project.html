@@ -1,0 +1,15 @@
+{% extends "header.html" %}
+
+{% block body %}
+<div class="flex flex-dir-col main-content new mobile">
+    <h3>Edit project</h3>
+    <a href="{% url 'tracker' profile.id %}" style="width: fit-content; color: var(--bg)">Return to the bug tracker</a>
+    <form method="POST" class="">
+        {% csrf_token %}
+        {{ form.errors }}
+        {{ form.non_field_errors }}
+        {{ form.as_p }}
+        <button type="submit" class="">Save</button>
+    </form>
+</div>
+{% endblock %}

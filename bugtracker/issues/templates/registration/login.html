@@ -18,7 +18,7 @@
 
     <div class="flex flex-alignit-c flex-dir-col flex-justcont-c login-block">
       <h4>LOG IN</h4>
-      <form method="post" action="{% url 'login' %}">
+      <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <table class="flex">
           <tr>

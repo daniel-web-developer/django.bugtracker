@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Project, Ticket
 from django.contrib.auth.decorators import login_required
-from .forms import newProjectForm, newTicketForm, editTicketForm
+from .forms import newProjectForm, newTicketForm, editTicketForm, registerForm
 from django.utils import timezone
 import secrets
 from django.views.generic.list import ListView
@@ -20,6 +20,24 @@ def generate_permalink(newObject):
 
 def index(request):
     return render(request, 'index/index.html')
+
+def register(request):
+    if request.method == "POST":
+        form = registerForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            return redirect('index')
+        else:
+            return render(request, 'registration/register.html', {
+                "form": form
+                })
+    else:
+        form = registerForm()
+        return render(request, 'registration/register.html', {
+            "form": form
+            })
+
     
 def tracker(request, profile_id):
     profile = get_object_or_404(User, pk = profile_id)
@@ -65,7 +83,7 @@ def project(request, profile_id, project_link):
                         "profile": profile,
                         "projects": Project.objects.all().filter(author = profile_id),
                         "theproject": projectid,
-                        "tickets": Ticket.objects.all().filter(title__conaints=query)
+                        "tickets": Ticket.objects.all().filter(title__contains=query)
                         })
                 else:
                     return render(request, 'registration/access_denied.html')
@@ -87,14 +105,6 @@ def project(request, profile_id, project_link):
                     })
             else:
                 return render(request, 'registration/access_denied.html')
-
-#class search(ListView):
- #   model = Ticket
-  #  template_name = 'tracker/projects.html'
-
-   # def get_queryset(self):
-    #    query = self.request.GET.get("q")
-    #    return Ticket.objects.filter(Q(title__icontains=query))
 
 def search(request, profile_id, project_link):
     profile = get_object_or_404(User, pk = profile_id)
@@ -174,6 +184,50 @@ def new_project(request, profile_id):
     else:
         return render(request, 'registration/access_denied.html')
 
+@login_required
+def edit_project(request, profile_id, project_link):
+    profile = get_object_or_404(User, pk = profile_id)
+    projectlink = get_object_or_404(Project, permalink = project_link)
+    if request.user.id == profile_id:
+        if request.method == "POST":
+            form = newProjectForm(request.POST, instance=projectlink)
+            if form.is_valid():
+                project = form.save(commit=False)
+                project.author = request.user
+                project.created_on = project.created_on
+                project.permalink = project.permalink
+                project.save()
+                return redirect('project', profile_id, project.permalink)
+            else:
+                return render(request, 'edit/project.html', {
+                    "profile": profile,
+                    "form": form
+                })
+        else:
+            form = newProjectForm(instance=projectlink)
+            return render(request, 'edit/project.html', {
+                "profile": profile,
+                "form": form
+            })
+    else:
+        return render(request, 'registration/access_denied.html')
+
+@login_required
+def delete_project(request, profile_id, project_link):
+    profile = get_object_or_404(User, pk = profile_id)
+    projectid = get_object_or_404(Project, permalink = project_link)
+    if request.user.id == profile.id:
+        try:
+            projectid.delete();
+            return render(request, 'tracker/project-delete.html', {
+                "profile": profile,
+                })
+        except Exception:
+            return HttpResponse("Something went wrong.")
+    else:
+        return render(request, 'registration/access_denied.html')
+
+
 def new_ticket(request, profile_id, project_link):
     profile = get_object_or_404(User, pk = profile_id)
     project = get_object_or_404(Project, permalink = project_link)
@@ -220,7 +274,11 @@ def edit_ticket(request, profile_id, project_link, ticket_link):
                 return render(request, 'registration/access_denied.html')
         else:
             form = editTicketForm(instance=ticketid)
-            return render(request, 'edit/ticket.html', {'form': form})
+            return render(request, 'edit/ticket.html', {
+                "profile": profile,
+                "projet": projectid,
+                "form": form
+            })
     else:
         return render(request, 'registration/access_denied.html')
 
@@ -231,7 +289,7 @@ def delete_ticket(request, profile_id, project_link, ticket_link):
     if request.user.id == profile.id:
         try:
             ticketid.delete();
-            return render(request, 'tracker/delete.html', {
+            return render(request, 'tracker/ticket-delete.html', {
                 "profile": profile,
                 "project": projectid, 
                 })

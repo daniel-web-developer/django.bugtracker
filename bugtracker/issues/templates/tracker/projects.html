@@ -41,6 +41,19 @@
                             {% endif %}
                         {% endfor %}
                     </ul>
+                    <div class="flex flex-justcont-sb project-buttons">
+                        <a href="{% url 'edit-project' profile.id theproject.permalink %}" class="flex flex-justcont-c flex-alignit-c tracker-block-second-issue">Edit project</a>
+                        <div>
+                            <a id="delete-button" class="flex flex-justcont-c flex-alignit-c ticket-edit">Delete project</a>
+                            <div id="confirmation" class="flex flex-dir-col flex-alignit-c ticket-confirm-dn">
+                                <p>Are you sure?</p>
+                                <div class="flex">
+                                    <a id="conf-yes" href="{% url 'delete-project' profile.id theproject.permalink %}" class="flex flex-justcont-c flex-alignit-c ticket-edit">Yes</a>
+                                    <a id="conf-no" class="flex flex-justcont-c flex-alignit-c ticket-edit">No</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="flex flex-dir-col tracker-block-second">

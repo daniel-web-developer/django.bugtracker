@@ -1,6 +1,7 @@
 import datetime
 from django import forms
-from .models import Project, Ticket
+from .models import Project, Ticket, User
+from django.contrib.auth.forms import UserCreationForm
 from django.forms import RadioSelect
 
 from django.core.exceptions import ValidationError
@@ -41,3 +42,10 @@ class editTicketForm(forms.ModelForm):
                 "public": "Tickets's privacy status",
                 "solved": "Is the ticket solved?"
                 }
+
+class registerForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+
