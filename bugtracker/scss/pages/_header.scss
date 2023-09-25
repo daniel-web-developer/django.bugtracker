@@ -70,6 +70,20 @@ header{
     }
 }
 
+footer{
+    height: 40px;
+    background: var(--bg);
+    margin-top: auto;
+
+    :first-child{
+        margin-right: 16px;
+    }
+
+    a{
+        color: var(--primary);
+    }
+}
+
 @media screen and (max-width: 1024px){
     .overlay{
         position: absolute;

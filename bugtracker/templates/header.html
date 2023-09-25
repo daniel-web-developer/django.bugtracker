@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'style.css' %}"/>
 <body>
     <header class="flex flex-justcont-sb">
-        <h5 class="logo"><a href="{% url 'index' %}">Logo</a></h5>
+        <h5 class="logo"><a href="{% url 'index' %}">BugTracker</a></h5>
         <div class="display-none-mobile">
             <a href="{% url 'index' %}" class="header-btns">Home</a>
             {% if user.is_authenticated %}
@@ -34,11 +34,16 @@
                 <a href="{% url 'profile-index' user.id %}">Your profile</a>
             {% else %}
                 <a href="{% url 'login' %}">Log in</a>
+                <a href="{% url 'register' %}" class="header-btns">Sign up</a>
             {% endif %}
         </div>
     </div>
     {% block body %}
     {% endblock %}
+    <footer class="flex flex-justcont-c flex-alignit-c">
+        <a href="https://github.com/daniel-web-developer" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/daniel-web-developer/" target="_blank">LinkedIn</a>
+    </footer>
     <script src="{% static 'script.js' %}" defer></script>
 </body>
 </html>

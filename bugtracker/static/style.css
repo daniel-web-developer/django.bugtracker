@@ -91,7 +91,7 @@ body {
 
 .main-content {
   background-color: var(--primary);
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 .text-align-c {
@@ -171,6 +171,18 @@ header .menu.open span:last-child {
   translate: 0px -6px;
 }
 
+footer {
+  height: 40px;
+  background: var(--bg);
+  margin-top: auto;
+}
+footer :first-child {
+  margin-right: 16px;
+}
+footer a {
+  color: var(--primary);
+}
+
 @media screen and (max-width: 1024px) {
   .overlay {
     position: absolute;
@@ -220,8 +232,8 @@ header .menu.open span:last-child {
 }
 .content {
   background-color: var(--primary);
-  padding: 0 0 0 240px;
-  height: calc(100vh - 80px);
+  padding: 0 240px 0 240px;
+  height: calc(100vh - 120px);
   align-items: center;
 }
 .content-text {
@@ -248,10 +260,28 @@ header .menu.open span:last-child {
   color: var(--primary);
 }
 
+.image {
+  object-fit: cover;
+  overflow: hidden;
+}
+.image-desktop {
+  width: 40vw;
+  margin-left: 24px;
+}
+.image-med {
+  display: none;
+  width: 500px;
+}
+.image-mobile {
+  display: none;
+  height: 400px;
+  margin-bottom: 24px;
+}
+
 @media screen and (max-width: 639px) {
   .content {
     padding: 0 32px 0 32px;
-    height: calc(100vh - 68px);
+    height: calc(100vh - 104px);
   }
   .content-text {
     padding-top: 32px;
@@ -260,19 +290,29 @@ header .menu.open span:last-child {
   .content h5 {
     padding-top: 32px;
   }
+  .image-mobile {
+    display: inline-block;
+  }
 }
-@media screen and (min-width: 640px) and (max-width: 1024px) {
+@media screen and (min-width: 640px) and (max-width: 1280px) {
   .content {
     padding: 0 120px 0 120px;
+    height: calc(100vh - 146px);
   }
   .content-text {
     padding-top: 48px;
     width: auto;
   }
+  .image-med {
+    display: block;
+  }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1280px) {
   .content-text {
     text-align: center;
+  }
+  .image-desktop {
+    display: none;
   }
   .mobile {
     flex-direction: column;
@@ -406,7 +446,7 @@ header .menu.open span:last-child {
 
 .tracker {
   background-color: var(--primary);
-  height: 100%;
+  min-height: calc(100vh - 120px);
   padding-top: 24px;
   justify-content: center;
 }
@@ -638,8 +678,8 @@ header .menu.open span:last-child {
     margin-top: 8px;
   }
   .tracker-block-second-search {
-    height: 70px;
     width: 100%;
+    margin-bottom: 8px;
   }
   .tracker-block-second-tickets {
     height: 520px;
@@ -684,6 +724,7 @@ header .menu.open span:last-child {
     margin-top: 16px;
     margin-right: 8px;
     margin-bottom: 8px;
+    overflow: hidden;
   }
   .tracker-block-second-search {
     position: relative;

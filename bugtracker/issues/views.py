@@ -8,7 +8,6 @@ from django.views.generic.list import ListView
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 
-
 # Create your views here.
 def generate_permalink(newObject):
     while (True):
@@ -37,7 +36,6 @@ def register(request):
         return render(request, 'registration/register.html', {
             "form": form
             })
-
     
 def tracker(request, profile_id):
     profile = get_object_or_404(User, pk = profile_id)
@@ -248,6 +246,7 @@ def new_ticket(request, profile_id, project_link):
             form = newTicketForm()
             return render(request, 'new/ticket.html', {
                 "profile": profile,
+                "project": project,
                 "form": form
             })
     else:
