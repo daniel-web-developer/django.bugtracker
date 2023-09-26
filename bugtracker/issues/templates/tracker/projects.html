@@ -71,12 +71,22 @@
                     <ul class="tracker-block-second-tickets-text">
                         {% for ticket in tickets %}
                             {% if ticket.public == 1 %}
-                                <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}" class="flex tracker-block-second-categories"><p>{{ ticket.title }}</p><p>{{ ticket.get_priority_display }}</p>{% if ticket.edited_on %}<p>{{ ticket.edited_on }}</p>{% else %}<p>{{ ticket.created_on }}</p>{% endif %}</a>
-                                <div class="tracker-block-second-border"></div>
+                                    {% if ticket.solved == False %}
+                                    <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}" class="flex tracker-block-second-categories"><p>{{ ticket.title }}</p><p>{{ ticket.get_priority_display }}</p>{% if ticket.edited_on %}<p>{{ ticket.edited_on }}</p>{% else %}<p>{{ ticket.created_on }}</p>{% endif %}</a>
+                                    <div class="tracker-block-second-border"></div>
+                                    {% else %}
+                                    <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}" class="flex tracker-block-second-categories"><s>{{ ticket.title }}</s><s>{{ ticket.get_priority_display }}</s>{% if ticket.edited_on %}<s>{{ ticket.edited_on }}</s>{% else %}<s>{{ ticket.created_on }}</s>{% endif %}</a>
+                                    <div class="tracker-block-second-border"></div>
+                                    {% endif %}
                             {% else %}
                                 {% if user.id == ticket.author.id %}
-                                <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}" class="flex tracker-block-second-categories"><p>{{ ticket.title }}</p><p>{{ ticket.get_priority_display }}</p>{% if ticket.edited_on %}<p>{{ ticket.edited_on }}</p>{% else %}<p>{{ ticket.created_on }}</p>{% endif %}</a>
-                                <div class="tracker-block-second-border"></div>
+                                    {% if ticket.solved == False %}
+                                    <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}" class="flex tracker-block-second-categories"><p>{{ ticket.title }}</p><p>{{ ticket.get_priority_display }}</p>{% if ticket.edited_on %}<p>{{ ticket.edited_on }}</p>{% else %}<p>{{ ticket.created_on }}</p>{% endif %}</a>
+                                    <div class="tracker-block-second-border"></div>
+                                    {% else %}
+                                    <a href="{% url 'ticket' profile.id ticket.project.permalink ticket.permalink %}" class="flex tracker-block-second-categories"><s>{{ ticket.title }}</s><s>{{ ticket.get_priority_display }}</s>{% if ticket.edited_on %}<s>{{ ticket.edited_on }}</s>{% else %}<s>{{ ticket.created_on }}</s>{% endif %}</a>
+                                    <div class="tracker-block-second-border"></div>
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                         {% endfor %}

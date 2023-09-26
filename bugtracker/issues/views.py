@@ -275,7 +275,7 @@ def edit_ticket(request, profile_id, project_link, ticket_link):
             form = editTicketForm(instance=ticketid)
             return render(request, 'edit/ticket.html', {
                 "profile": profile,
-                "projet": projectid,
+                "project": projectid,
                 "form": form
             })
     else:

@@ -1,32 +1,34 @@
 .content{
     background-color: var(--primary);
     padding: 0 240px 0 240px;
-    height: calc(100vh - 120px);
     align-items: center;
 
     &-text{
         width: 540px;
         color: var(--bg);
-    }
+        padding: 128px 0 128px 0;
 
-    h5{
-        padding-top: 32px;
-        font-weight: 400;
-        
-        .home-button{
-            cursor: pointer;
-            border: 1px solid var(--bg);
-            background-color: transparent;
-            color: var(--bg);
-            padding: 5px 15px 5px 15px;
-            border-radius: 30px;
-            transition: all 100ms ease-in-out;
-            text-decoration: none;
-            
-            &:hover{
-                border: 1px solid var(--primary);
-                background-color: var(--bg);
-                color: var(--primary);
+        text-align: center;
+
+        h5{
+            padding-top: 32px;
+            font-weight: 400;
+
+            .home-button{
+                cursor: pointer;
+                border: 1px solid var(--bg);
+                background-color: transparent;
+                color: var(--bg);
+                padding: 5px 15px 5px 15px;
+                border-radius: 30px;
+                transition: all 100ms ease-in-out;
+                text-decoration: none;
+
+                &:hover{
+                    border: 1px solid var(--primary);
+                    background-color: var(--bg);
+                    color: var(--primary);
+                }
             }
         }
     }
@@ -37,13 +39,8 @@
     overflow: hidden;
 
     &-desktop{
-        width: 40vw;
-        margin-left: 24px;
-    }
-
-    &-med{
-        display: none;
-        width: 500px;
+        margin: 0 32px 0 32px;
+        width: 800px;
     }
 
     &-mobile{
@@ -56,7 +53,6 @@
 @media screen and (max-width: 639px){
     .content{
         padding: 0 32px 0 32px;
-        height: calc(100vh - 104px);
 
         &-text{
             padding-top: 32px;
@@ -69,6 +65,10 @@
     }
 
     .image{
+        &-desktop{
+            display: none;
+        }
+
         &-mobile{
             display: inline-block;
         }
@@ -78,11 +78,9 @@
 @media screen and (min-width: 640px) and (max-width: 1280px){
     .content{
         padding: 0 120px 0 120px;
-        height: calc(100vh - 146px);
 
         &-text{
             padding-top: 48px;
-            width: auto;
         }
     }
 
@@ -94,18 +92,6 @@
 }
 
 @media screen and (max-width: 1280px){
-    .content{
-        &-text{
-            text-align: center;
-        }
-    }
-
-    .image{
-        &-desktop{
-            display: none;
-        }
-    }
-
     .mobile{
         flex-direction: column;
     }

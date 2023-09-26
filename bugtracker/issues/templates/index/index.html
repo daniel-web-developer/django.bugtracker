@@ -1,7 +1,7 @@
 {% extends "header.html" %}
 
 {% block body %}
-<div class="flex flex-justcont-sb flex-alignit-c content mobile">
+<div class="flex flex-justcont-c flex-alignit-c mobile">
     <div class="content-text">
         <h1>BugTracker</h1>
         <h3>An easier way to keep track of your projects</h3>
@@ -14,7 +14,9 @@
         </h5>
     </div>
     {% load static %}
-    <img src="{% static 'bugtracker-desktop.png' %}" alt="Bugtracker example" class="image image-desktop">
-    <img src="{% static 'bugtracker-mobile.png' %}" alt="Bugtracker example" class="image image-mobile">
+</div>
+<div class="flex flex-justcont-c">
+    <img src="{% static 'bugtracker-desktop.png' %}" alt="Bugtracker example" loading="lazy" class="image image-desktop">
+    <img src="{% static 'bugtracker-mobile.png' %}" alt="Bugtracker example" loading="lazy" class="image image-mobile">
 </div>
 {% endblock %}
