@@ -2,6 +2,21 @@
     color: var(--bg);
     padding: 24px 240px 24px 240px;
 
+    #id_name{
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    #id_title{
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    #id_description{
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
     button{
         cursor: pointer;
         border: 1px solid var(--bg);
@@ -21,6 +36,7 @@
     }
 }
 
+
 @media screen and (min-width: 640px) and (max-width: 1024px){
     .new{
         padding: 0 120px 0 120px;
@@ -30,6 +46,10 @@
 @media screen and (max-width: 639px){
     .new{
         padding: 0 32px 0 32px;
+
+        #id_description{
+            width: calc(100vw - 64px);
+        }
     }
 }
 

@@ -37,6 +37,7 @@
 .image{
     object-fit: cover;
     overflow: hidden;
+    margin-bottom: 32px !important;
 
     &-desktop{
         margin: 0 32px 0 32px;

@@ -91,21 +91,29 @@ body {
 
 .main-content {
   background-color: var(--primary);
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
 }
 
 .text-align-c {
   text-align: center;
 }
 
+@media screen and (min-width: 1024px) {
+  .display-none-desktop {
+    display: none;
+  }
+}
 @media screen and (max-width: 1023px) {
+  .main-content {
+    min-height: calc(100vh - 146px);
+  }
   .display-none-mobile {
     display: none;
   }
 }
-@media screen and (min-width: 1024px) {
-  .display-none-desktop {
-    display: none;
+@media screen and (max-width: 639px) {
+  .main-content {
+    min-height: calc(100vh - 114px);
   }
 }
 :root {
@@ -174,7 +182,6 @@ header .menu.open span:last-child {
 footer {
   height: 40px;
   background: var(--bg);
-  margin-top: 32px;
 }
 footer :first-child {
   margin-right: 16px;
@@ -264,6 +271,7 @@ footer a {
 .image {
   object-fit: cover;
   overflow: hidden;
+  margin-bottom: 32px !important;
 }
 .image-desktop {
   margin: 0 32px 0 32px;
@@ -590,6 +598,9 @@ footer a {
   padding: 24px 240px 0 240px;
   color: var(--bg);
 }
+.ticket-solved {
+  color: var(--grey) !important;
+}
 .ticket-dates {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -774,6 +785,18 @@ footer a {
   color: var(--bg);
   padding: 24px 240px 24px 240px;
 }
+.new #id_name {
+  width: 100%;
+  margin-bottom: 16px;
+}
+.new #id_title {
+  width: 100%;
+  margin-bottom: 16px;
+}
+.new #id_description {
+  width: 100%;
+  margin-bottom: 16px;
+}
 .new button {
   cursor: pointer;
   border: 1px solid var(--bg);
@@ -799,6 +822,9 @@ footer a {
 @media screen and (max-width: 639px) {
   .new {
     padding: 0 32px 0 32px;
+  }
+  .new #id_description {
+    width: calc(100vw - 64px);
   }
 }
 

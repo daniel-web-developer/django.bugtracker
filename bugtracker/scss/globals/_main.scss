@@ -50,7 +50,7 @@ body{
 .main{
     &-content{
         background-color: var(--primary);
-        min-height: 100vh;
+        min-height: calc(100vh - 120px);
     }
 }
 
@@ -60,14 +60,30 @@ body{
     }
 }
 
+@media screen and (min-width: 1024px){
+
+    .display-none-desktop{
+        display: none;
+    }
+}
+
 @media screen and (max-width: 1023px){
+    .main{
+        &-content{
+            min-height: calc(100vh - 146px);
+        }
+    }
+
     .display-none-mobile{
         display: none;
     }
 }
 
-@media screen and (min-width: 1024px){
-    .display-none-desktop{
-        display: none;
+@media screen and (max-width: 639px){
+    .main{
+        &-content{
+            min-height: calc(100vh - 114px);
+        }
     }
 }
+

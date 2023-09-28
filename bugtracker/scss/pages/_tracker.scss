@@ -185,6 +185,10 @@
     padding: 24px 240px 0 240px;
     color: var(--bg);
 
+    &-solved{
+        color: var(--grey) !important;
+    }
+
     &-dates{
         margin-top: 16px;
         margin-bottom: 16px;
