@@ -36,7 +36,7 @@ Users can use the search bar in order to filter tickets according to their title
 
 To run it on your machine or deploy it to production on the cloud, you're gonna need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/).
 
-**This teaches you to run the development build. If you want to use the production environment, always type `-f docker-compose.prod.yml` after `compose`, e.g. `$ docker compose -f docker-compose.prod.yml...` **
+**This teaches you to run the development build. If you want to use the production environment, always type `-f docker-compose.prod.yml` after `compose`, e.g. `$ docker compose -f docker-compose.prod.yml...`**
 
 ### Building the containers
 
