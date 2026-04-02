@@ -1,3 +1,5 @@
+# ATTENTION! This code is not being mantained. The last time I changed anything was over a year ago so you should assume it isn't safe.
+
 # Bugtracker - Full-stack CRUD app
 
 ## Introduction
